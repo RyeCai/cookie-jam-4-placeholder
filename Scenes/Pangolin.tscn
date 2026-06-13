@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dtdb14108e7si"]
+
+[ext_resource type="Script" uid="uid://dum1uuna5y316" path="res://Scenes/pangolin.gd" id="1_m0pmm"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_n8hgi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0pmm"]
+size = Vector2(118, 116)
+
+[node name="Pangolin" type="CharacterBody2D" unique_id=1847377051]
+script = ExtResource("1_m0pmm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=958498912]
+texture = ExtResource("1_n8hgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=520007572]
+shape = SubResource("RectangleShape2D_m0pmm")
