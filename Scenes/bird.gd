@@ -19,18 +19,18 @@ func _ready() -> void:
 	#camera.done_moving.connect(_on_camera_2d_done_moving)
 
 func _physics_process(delta: float) -> void:
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	if Input.is_action_just_pressed("switch_char"):
-			disabled = !disabled
-			$RemoteTransform2D.update_position = false
-			if disabled:
-				velocity = Vector2.ZERO
-			else:
-				controls_on.emit(self)
-	if !disabled:
-		var direction := Input.get_vector("bird_left", "bird_right", "bird_up", "bird_down")
-		direction = direction.normalized()
+    # Get the input direction and handle the movement/deceleration.
+    # As good practice, you should replace UI actions with custom gameplay actions.
+    if Input.is_action_just_pressed("switch_char"):
+            disabled = !disabled
+            $RemoteTransform2D.update_position = false
+            if disabled:
+                velocity = Vector2.ZERO
+            else:
+                controls_on.emit(self)
+    if !disabled:
+        var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+        direction = direction.normalized()
 
 		_check_for_sprite_move(direction.x)
 
