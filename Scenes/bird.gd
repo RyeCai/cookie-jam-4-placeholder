@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
             else:
                 controls_on.emit(self)
     if !disabled:
-        var direction := Input.get_vector("bird_left", "bird_right", "bird_up", "bird_down")
+        var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
         direction = direction.normalized()
 
         _check_for_sprite_move(direction.x)
