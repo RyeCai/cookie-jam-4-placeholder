@@ -12,11 +12,11 @@ var disabled: bool
 
 
 func _ready() -> void:
-    sprite.play("idle")
-    disabled = true
-    $RemoteTransform2D.remote_path = camera.get_path()
-    $RemoteTransform2D.update_position = false
-    #camera.done_moving.connect(_on_camera_2d_done_moving)
+	sprite.play("idle")
+	disabled = true
+	$RemoteTransform2D.remote_path = camera.get_path()
+	$RemoteTransform2D.update_position = false
+	#camera.done_moving.connect(_on_camera_2d_done_moving)
 
 
 func _physics_process(delta: float) -> void:
@@ -61,22 +61,22 @@ func _physics_process(delta: float) -> void:
 
 #This function checks for sprite movement to determine animation AND the sprite flip
 func _check_for_sprite_move(direction):
-    #This cannot be an if/else or else a sprite flip will be forced
-    if direction and !disabled:
-        sprite.play("walk")
+	#This cannot be an if/else or else a sprite flip will be forced
+	if direction and !disabled:
+		sprite.play("walk")
 
-        if direction < 0:
-            sprite.flip_h = true
+		if direction < 0:
+			sprite.flip_h = true
 
-        if direction > 0:
-            sprite.flip_h = false
+		if direction > 0:
+			sprite.flip_h = false
 
-    else:
-        sprite.play("idle")
+	else:
+		sprite.play("idle")
 
 
 func _on_camera_2d_done_moving() -> void:
-    if !disabled:
-        $RemoteTransform2D.update_position = true
-    else:
-        $RemoteTransform2D.update_position = false
+	if !disabled:
+		$RemoteTransform2D.update_position = true
+	else:
+		$RemoteTransform2D.update_position = false

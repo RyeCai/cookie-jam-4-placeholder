@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://csd3wdunq7uxf"]
+
+[ext_resource type="Script" uid="uid://bb3k8lnbf4i6j" path="res://Puzzle Mechanic Objects/pango_button.gd" id="1_sfi57"]
+[ext_resource type="Texture2D" uid="uid://bfv2d2tiry71s" path="res://Art/pad_off_32.png" id="1_xpsi5"]
+[ext_resource type="Texture2D" uid="uid://dynwdkveuepqs" path="res://Art/pad_on_32.png" id="2_sfi57"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wghbn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xpsi5")
+}],
+"loop": true,
+"name": &"button_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sfi57")
+}],
+"loop": true,
+"name": &"button_pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wghbn"]
+size = Vector2(28, 16)
+
+[node name="PangoButton" type="Node2D" unique_id=1809661226]
+script = ExtResource("1_sfi57")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262297279]
+sprite_frames = SubResource("SpriteFrames_wghbn")
+animation = &"button_default"
+
+[node name="ButtonArea" type="Area2D" parent="." unique_id=1958176529]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea" unique_id=692604879]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_wghbn")
+
+[connection signal="body_entered" from="ButtonArea" to="." method="_on_button_area_body_entered"]
+[connection signal="body_exited" from="ButtonArea" to="." method="_on_button_area_body_exited"]

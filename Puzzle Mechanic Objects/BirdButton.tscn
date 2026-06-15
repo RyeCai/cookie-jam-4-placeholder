@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://caewyqjmdmn6f"]
+
+[ext_resource type="Texture2D" uid="uid://bd5yuip8f1ud3" path="res://Art/pad_off_16.png" id="1_8y76p"]
+[ext_resource type="Script" uid="uid://cukswfemw4jj6" path="res://Puzzle Mechanic Objects/bird_button.gd" id="1_hc6jo"]
+[ext_resource type="Texture2D" uid="uid://gjp3jwvj26rm" path="res://Art/pad_on_16.png" id="2_hc6jo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wghbn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8y76p")
+}],
+"loop": true,
+"name": &"button_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hc6jo")
+}],
+"loop": true,
+"name": &"button_pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wghbn"]
+size = Vector2(16, 16)
+
+[node name="BirdButton" type="Node2D" unique_id=1809661226]
+script = ExtResource("1_hc6jo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262297279]
+sprite_frames = SubResource("SpriteFrames_wghbn")
+animation = &"button_default"
+
+[node name="ButtonArea" type="Area2D" parent="." unique_id=1958176529]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea" unique_id=692604879]
+shape = SubResource("RectangleShape2D_wghbn")
+
+[connection signal="body_entered" from="ButtonArea" to="." method="_on_button_area_body_entered"]
+[connection signal="body_exited" from="ButtonArea" to="." method="_on_button_area_body_exited"]
