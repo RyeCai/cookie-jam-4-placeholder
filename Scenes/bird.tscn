@@ -42,7 +42,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -81,3 +81,7 @@ frame_progress = 0.9652769
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336916907]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_mcegt")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=834631985]
+update_rotation = false
+update_scale = false
