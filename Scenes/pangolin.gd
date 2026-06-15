@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal controls_on(character: CharacterBody2D)
+
 const SPEED = 150.0
 const FRICTION = 15.0
 const JUMP_VELOCITY = -400.0
@@ -14,7 +16,7 @@ func _ready() -> void:
     disabled = true
     $RemoteTransform2D.remote_path = camera.get_path()
     $RemoteTransform2D.update_position = false
-    
+    #camera.done_moving.connect(_on_camera_2d_done_moving)
 
 
 func _physics_process(delta: float) -> void:
@@ -25,10 +27,12 @@ func _physics_process(delta: float) -> void:
     #if Input.is_action_just_pressed("switch_char") and !$RemoteTransform2D.remote_path:
         #$RemoteTransform2D.remote_path = camera.get_path()
     if Input.is_action_just_pressed("switch_char"):
+            if !disabled:
+                velocity.x = 0
+            else:
+                controls_on.emit(self)
             disabled = !disabled
             $RemoteTransform2D.update_position = false
-            if disabled:
-                velocity.x = 0
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
     var direction := Input.get_axis("pango_left", "pango_right")
@@ -43,8 +47,6 @@ func _physics_process(delta: float) -> void:
         if Input.is_action_just_pressed("pango_jump") and is_on_floor():
             velocity.y = JUMP_VELOCITY
 
-
-
         if direction:
             #velocity.x = direction * SPEED
             #Added this line to smooth the movement a bit- feels better when approaching ledges
@@ -52,6 +54,7 @@ func _physics_process(delta: float) -> void:
         else:
             #This might be able to be replaced with lerp but we'll leave it for now
             velocity.x = move_toward(velocity.x, 0, SPEED)
+        
 
     move_and_slide()
 

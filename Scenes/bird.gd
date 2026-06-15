@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal controls_on(character: CharacterBody2D)
+
 const SPEED = 200.0
 const FRICTION = 10.0
 const JUMP_VELOCITY = -400.0
@@ -13,6 +15,8 @@ func _ready() -> void:
     sprite.play("fly")
     disabled = false
     $RemoteTransform2D.remote_path = camera.get_path()
+    controls_on.emit(self)
+    #camera.done_moving.connect(_on_camera_2d_done_moving)
 
 func _physics_process(delta: float) -> void:
     # Get the input direction and handle the movement/deceleration.
@@ -22,6 +26,8 @@ func _physics_process(delta: float) -> void:
             $RemoteTransform2D.update_position = false
             if disabled:
                 velocity = Vector2.ZERO
+            else:
+                controls_on.emit(self)
     if !disabled:
         var direction := Input.get_vector("bird_left", "bird_right", "bird_up", "bird_down")
         direction = direction.normalized()
