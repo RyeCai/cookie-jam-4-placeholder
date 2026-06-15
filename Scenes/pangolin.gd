@@ -35,15 +35,15 @@ func _physics_process(delta: float) -> void:
 
     #Calls functions to update sprite movement
     _check_for_sprite_move(direction)
+    #Need to put this here due to ordering of animations
+    if not is_on_floor():
+        sprite.play("jump")
     if !disabled:
         # Handle jump.
         if Input.is_action_just_pressed("pango_jump") and is_on_floor():
             velocity.y = JUMP_VELOCITY
 
 
-        #Need to put this here due to ordering of animations
-        if not is_on_floor():
-            sprite.play("jump")
 
         if direction:
             #velocity.x = direction * SPEED
@@ -75,6 +75,5 @@ func _check_for_sprite_move(direction):
 func _on_camera_2d_done_moving() -> void:
     if !disabled:
         $RemoteTransform2D.update_position = true
-        $RemoteTransform2D.remote_path = camera.get_path()
     else:
         $RemoteTransform2D.update_position = false

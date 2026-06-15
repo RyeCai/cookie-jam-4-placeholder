@@ -25,6 +25,6 @@ func _process(delta: float) -> void:
         var interpolated_pos: Vector2 = position.slerp(current_char.position, delta*panning_speed)
         position = interpolated_pos
         # camera currently stops moving at an arbitrary value
-        if abs(interpolated_pos.length() - current_char.position.length()) < 0.15:
+        if abs(interpolated_pos.length() - current_char.position.length()) < 0.12:
             done_moving.emit()
             camera_moving = false

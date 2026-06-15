@@ -55,6 +55,5 @@ func _check_for_sprite_move(direction):
 func _on_camera_2d_done_moving() -> void:
     if !disabled:
         $RemoteTransform2D.update_position = true
-        $RemoteTransform2D.remote_path = camera.get_path()
     else:
         $RemoteTransform2D.update_position = false
