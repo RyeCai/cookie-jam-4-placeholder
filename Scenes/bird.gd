@@ -22,13 +22,13 @@ func _physics_process(delta: float) -> void:
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
     if Input.is_action_just_pressed("switch_char"):
-            disabled = !disabled
+            disabled = not disabled
             $RemoteTransform2D.update_position = false
             if disabled:
                 velocity = Vector2.ZERO
             else:
                 controls_on.emit(self)
-    if !disabled:
+    if not disabled:
         var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
         direction = direction.normalized()
 
@@ -59,7 +59,7 @@ func _check_for_sprite_move(direction):
 
 
 func _on_camera_2d_done_moving() -> void:
-    if !disabled:
+    if not disabled:
         $RemoteTransform2D.update_position = true
     else:
         $RemoteTransform2D.update_position = false

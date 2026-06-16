@@ -2,13 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_1rc8e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5262"]
-size = Vector2(120, 120)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1rc8e"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1rc8e"]
+a = Vector2(-66, -64)
+b = Vector2(99, 92)
 
 [node name="Platform" type="StaticBody2D" unique_id=11848979]
+physics_material_override = SubResource("PhysicsMaterial_1rc8e")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=209791154]
+position = Vector2(-30, 56)
+rotation = 0.7675429
+scale = Vector2(1.694172, 1)
 texture = ExtResource("1_1rc8e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=615442662]
-shape = SubResource("RectangleShape2D_n5262")
+shape = SubResource("SegmentShape2D_1rc8e")
