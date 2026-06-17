@@ -87,14 +87,14 @@ func _check_for_sprite_move(direction):
     if direction and not controls_disabled:
         sprite.play("walk")
 
-		if direction < 0:
-			sprite.flip_h = true
+        if direction < 0:
+            sprite.flip_h = true
 
-		if direction > 0:
-			sprite.flip_h = false
+        if direction > 0:
+            sprite.flip_h = false
 
-	else:
-		sprite.play("idle")
+    else:
+        sprite.play("idle")
 
 
 func _on_camera_2d_done_moving() -> void:

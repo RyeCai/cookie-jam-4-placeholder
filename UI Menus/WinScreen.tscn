@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ds01foms1lojk"]
 
 [ext_resource type="FontFile" uid="uid://cuylcghhd2avw" path="res://Fonts/ARCO for OSX.otf" id="1_iob0x"]
+[ext_resource type="Script" uid="uid://bmnmmonb2oab4" path="res://UI Menus/level_select.gd" id="2_i6bs7"]
+[ext_resource type="Script" uid="uid://b2xpq1iopo7jf" path="res://UI Menus/button_main_menu.gd" id="3_s56le"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i6bs7"]
 font = ExtResource("1_iob0x")
@@ -33,7 +35,7 @@ text = "Level complete!"
 label_settings = SubResource("LabelSettings_i6bs7")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel" unique_id=2050322809]
+[node name="LevelSelectVBox" type="VBoxContainer" parent="BackgroundPanel" unique_id=2050322809]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,32 +50,33 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 36
 alignment = 1
+script = ExtResource("2_i6bs7")
 
-[node name="ButtonLevelOne" type="Button" parent="BackgroundPanel/VBoxContainer" unique_id=1031238825]
+[node name="ButtonLevelOne" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1031238825]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 32
 text = "Level One"
 
-[node name="ButtonLevelTwo" type="Button" parent="BackgroundPanel/VBoxContainer" unique_id=1705810063]
+[node name="ButtonLevelTwo" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1705810063]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 32
 text = "Level Two"
 
-[node name="ButtonLevelThree" type="Button" parent="BackgroundPanel/VBoxContainer" unique_id=660998999]
+[node name="ButtonLevelThree" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=660998999]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 32
 text = "Level Three"
 
-[node name="ButtonLevelFour" type="Button" parent="BackgroundPanel/VBoxContainer" unique_id=2133645190]
+[node name="ButtonLevelFour" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=2133645190]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 32
 text = "Level Four"
 
-[node name="ButtonLevelFive" type="Button" parent="BackgroundPanel/VBoxContainer" unique_id=1643066200]
+[node name="ButtonLevelFive" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1643066200]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 32
@@ -100,9 +103,17 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 24
 text = "Main Menu"
+script = ExtResource("3_s56le")
 
 [node name="ButtonQuitGame" type="Button" parent="BackgroundPanel/HBoxContainer" unique_id=923614398]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 24
 text = "Quit Game"
+
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelOne" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_one_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelTwo" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_two_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelThree" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_three_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFour" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_four_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFive" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_five_pressed"]
+[connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonMainMenu" to="BackgroundPanel/HBoxContainer/ButtonMainMenu" method="_on_pressed"]

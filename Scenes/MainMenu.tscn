@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://dxuc22rtu7nq1"]
+
+[ext_resource type="Texture2D" uid="uid://cuehjy60ppnk4" path="res://Art/main menu screen.png" id="1_853f1"]
+[ext_resource type="FontFile" uid="uid://cuylcghhd2avw" path="res://Fonts/ARCO for OSX.otf" id="2_8saeu"]
+[ext_resource type="Script" uid="uid://cgqcqm4to3wlg" path="res://Scenes/credits_button.gd" id="3_8saeu"]
+[ext_resource type="Script" uid="uid://bmnmmonb2oab4" path="res://UI Menus/level_select.gd" id="4_ghw46"]
+[ext_resource type="Script" uid="uid://b4joe0tjjkrdt" path="res://UI Menus/button_quit_game.gd" id="5_df05h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ghw46"]
+font = ExtResource("2_8saeu")
+font_size = 72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.8235294)
+
+[sub_resource type="LabelSettings" id="LabelSettings_853f1"]
+font_size = 12
+
+[node name="MainMenu" type="Control" unique_id=335306580]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_vertical_guides_ = [720.0]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1664429979]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_853f1")
+
+[node name="MUTUALISM" type="Label" parent="." unique_id=1795370918]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 536.0
+offset_bottom = 127.0
+text = "MUTUALISM"
+label_settings = SubResource("LabelSettings_ghw46")
+
+[node name="CreditsButton" type="Button" parent="." unique_id=376387888]
+layout_mode = 0
+offset_left = 1264.0
+offset_top = 728.0
+offset_right = 1405.0
+offset_bottom = 776.0
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+script = ExtResource("3_8saeu")
+
+[node name="CreditsPanel" type="Panel" parent="." unique_id=835242865]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 174.22217
+offset_top = 98.0
+offset_right = -174.22217
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_853f1")
+
+[node name="Main Label" type="Label" parent="CreditsPanel" unique_id=1170329610]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.49982
+offset_top = 14.575
+offset_right = 150.50018
+offset_bottom = 37.575
+grow_horizontal = 2
+text = "This game was made for Cookie Jam #4"
+horizontal_alignment = 1
+
+[node name="Additional" type="Label" parent="CreditsPanel" unique_id=748306334]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -401.49982
+offset_top = 510.0
+offset_right = 401.50018
+offset_bottom = 581.0
+grow_horizontal = 2
+text = "Font used is ARCO by Rafael Olivo under CC0 license (DaFont.com)
+Original sound files prior to mixing and editing gathered from FreeSound.com under CC0 license."
+label_settings = SubResource("LabelSettings_853f1")
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="CreditsPanel" unique_id=96886308]
+layout_mode = 0
+offset_left = 217.77783
+offset_top = 142.0
+offset_right = 540.77783
+offset_bottom = 425.0
+text = "Design
+
+Character Programming
+
+Puzzle Mechanics and Level Programming
+
+Artwork
+
+SFX
+
+Music"
+horizontal_alignment = 2
+
+[node name="Person" type="Label" parent="CreditsPanel" unique_id=826444301]
+layout_mode = 0
+offset_left = 553.77783
+offset_top = 142.0
+offset_right = 662.77783
+offset_bottom = 425.0
+text = "- RyCai, stinko
+
+- RyCai
+
+- RyCai, stinko
+
+- stinko
+
+- 
+
+- stinko"
+
+[node name="LevelSelectVBox" type="VBoxContainer" parent="." unique_id=1428642312]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -670.0
+offset_top = -93.859985
+offset_right = -442.0
+offset_bottom = 260.14087
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+alignment = 1
+script = ExtResource("4_ghw46")
+
+[node name="ButtonLevelOne" type="Button" parent="LevelSelectVBox" unique_id=1993965539]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 32
+text = "Level One"
+
+[node name="ButtonLevelTwo" type="Button" parent="LevelSelectVBox" unique_id=1746469205]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 32
+text = "Level Two"
+
+[node name="ButtonLevelThree" type="Button" parent="LevelSelectVBox" unique_id=1000623796]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 32
+text = "Level Three"
+
+[node name="ButtonLevelFour" type="Button" parent="LevelSelectVBox" unique_id=1383183950]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 32
+text = "Level Four"
+
+[node name="ButtonLevelFive" type="Button" parent="LevelSelectVBox" unique_id=1120814592]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 32
+text = "Level Five"
+
+[node name="ButtonQuitGame" type="Button" parent="." unique_id=321426933]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 736.0
+offset_right = 210.0
+offset_bottom = 770.0
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 24
+text = "Quit Game"
+script = ExtResource("5_df05h")
+
+[connection signal="pressed" from="CreditsButton" to="CreditsButton" method="_on_pressed"]
+[connection signal="pressed" from="LevelSelectVBox/ButtonLevelOne" to="LevelSelectVBox" method="_on_button_level_one_pressed"]
+[connection signal="pressed" from="LevelSelectVBox/ButtonLevelTwo" to="LevelSelectVBox" method="_on_button_level_two_pressed"]
+[connection signal="pressed" from="LevelSelectVBox/ButtonLevelThree" to="LevelSelectVBox" method="_on_button_level_three_pressed"]
+[connection signal="pressed" from="LevelSelectVBox/ButtonLevelFour" to="LevelSelectVBox" method="_on_button_level_four_pressed"]
+[connection signal="pressed" from="LevelSelectVBox/ButtonLevelFive" to="LevelSelectVBox" method="_on_button_level_five_pressed"]
+[connection signal="pressed" from="ButtonQuitGame" to="ButtonQuitGame" method="_on_pressed"]

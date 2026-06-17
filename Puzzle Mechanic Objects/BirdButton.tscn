@@ -29,6 +29,8 @@ size = Vector2(16, 16)
 [node name="BirdButton" type="Node2D" unique_id=1809661226]
 script = ExtResource("1_hc6jo")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=116248787]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262297279]
 sprite_frames = SubResource("SpriteFrames_wghbn")
 animation = &"button_default"
