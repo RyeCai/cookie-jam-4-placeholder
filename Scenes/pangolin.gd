@@ -36,7 +36,10 @@ func _physics_process(delta: float) -> void:
         if ball_mode:
             var pos_snapshot: Vector2 = ball_instance.global_position
             position = ball_instance.global_position
-            #ball_instance.call_deferred("queue_free")
+            if ball_instance.linear_velocity.x > 0:
+                sprite.flip_h = false
+            elif ball_instance.linear_velocity.x < 0:
+                sprite.flip_h = false
             ball_instance.queue_free()
             $CollisionShape2D.set_deferred("disabled", false)
             $AnimatedSprite2D.visible = true
@@ -45,6 +48,7 @@ func _physics_process(delta: float) -> void:
             $CollisionShape2D.set_deferred("disabled", true)
             $AnimatedSprite2D.visible = false
             ball_instance = pango_ball_scene.instantiate()
+            ball_instance.linear_velocity = velocity
             add_child(ball_instance)
         ball_mode = not ball_mode
     
@@ -87,14 +91,14 @@ func _check_for_sprite_move(direction):
     if direction and not controls_disabled:
         sprite.play("walk")
 
-		if direction < 0:
-			sprite.flip_h = true
+        if direction < 0:
+            sprite.flip_h = true
 
-		if direction > 0:
-			sprite.flip_h = false
+        if direction > 0:
+            sprite.flip_h = false
 
-	else:
-		sprite.play("idle")
+    else:
+        sprite.play("idle")
 
 
 func _on_camera_2d_done_moving() -> void:

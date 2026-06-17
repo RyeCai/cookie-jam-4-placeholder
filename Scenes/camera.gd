@@ -7,7 +7,7 @@ var current_char: CharacterBody2D
 var camera_moving: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+    pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,10 +23,10 @@ func _process(delta: float) -> void:
 
 
 func _on_pangolin_controls_on(pango_transform: CharacterBody2D) -> void:
-	current_char = pango_transform
-	camera_moving = true
+    current_char = pango_transform
+    camera_moving = true
 
 
 func _on_bird_controls_on(bird_transform: CharacterBody2D) -> void:
-	current_char = bird_transform
-	camera_moving = true
+    current_char = bird_transform
+    camera_moving = true
