@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://npcqmqu10one"]
+
+[ext_resource type="Texture2D" uid="uid://b6sn2bu3v5kp8" path="res://Art/pangolin_ball.png" id="1_rtcl8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jmngd"]
+rough = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85rm3"]
+atlas = ExtResource("1_rtcl8")
+region = Rect2(12, 0, 23, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqfhl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85rm3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3bggd"]
+radius = 9.475542
+
+[node name="Ball" type="RigidBody2D" unique_id=1742559038]
+process_physics_priority = -1
+collision_layer = 2
+collision_mask = 5
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_jmngd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1188674668]
+sprite_frames = SubResource("SpriteFrames_hqfhl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=216038330]
+shape = SubResource("CircleShape2D_3bggd")
