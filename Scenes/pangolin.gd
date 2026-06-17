@@ -36,10 +36,6 @@ func _physics_process(delta: float) -> void:
         if ball_mode:
             var pos_snapshot: Vector2 = ball_instance.global_position
             position = ball_instance.global_position
-            if ball_instance.linear_velocity.x > 0:
-                sprite.flip_h = false
-            elif ball_instance.linear_velocity.x < 0:
-                sprite.flip_h = false
             ball_instance.queue_free()
             $CollisionShape2D.set_deferred("disabled", false)
             $AnimatedSprite2D.visible = true
