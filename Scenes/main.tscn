@@ -91,7 +91,6 @@ sources/0 = SubResource("TileSetAtlasSource_kry3j")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1044250469]
 zoom = Vector2(2, 2)
 script = ExtResource("1_jjvhh")
-panning_speed = null
 
 [node name="Pangolin" parent="." unique_id=1847377051 node_paths=PackedStringArray("camera") instance=ExtResource("3_kry3j")]
 unique_name_in_owner = true

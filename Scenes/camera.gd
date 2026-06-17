@@ -12,12 +12,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-    #if Input.is_action_just_pressed("switch_char"):
-        #camera_moving = true
-        #if current_char == bird:
-            #current_char = pango
-        #else:
-            #current_char = bird
     if camera_moving:
         #var weight = 1 - exp(-panning_speed * delta)
         var interpolated_pos: Vector2 = position.lerp(current_char.position, delta*panning_speed)

@@ -11,7 +11,7 @@ const JUMP_VELOCITY = -400.0
 @export var pango_ball_scene: PackedScene
 var controls_disabled: bool 
 var ball_mode: bool
-var ball_instance: Node2D
+var ball_instance: RigidBody2D
 
 
 func _ready() -> void:
@@ -31,23 +31,27 @@ func _physics_process(delta: float) -> void:
             controls_on.emit(self)
         controls_disabled = not controls_disabled
         $RemoteTransform2D.update_position = false
+    
     if not controls_disabled and Input.is_action_just_pressed("pango_ball"):
         if ball_mode:
+            var pos_snapshot: Vector2 = ball_instance.global_position
+            position = ball_instance.global_position
+            #ball_instance.call_deferred("queue_free")
             ball_instance.queue_free()
             $CollisionShape2D.set_deferred("disabled", false)
             $AnimatedSprite2D.visible = true
+            $RemoteTransform2D.global_position = pos_snapshot
         else:
             $CollisionShape2D.set_deferred("disabled", true)
             $AnimatedSprite2D.visible = false
             ball_instance = pango_ball_scene.instantiate()
             add_child(ball_instance)
         ball_mode = not ball_mode
-            
     
     # Add the gravity.
     if ball_mode:
-        global_position = ball_instance.global_position
-    else: 
+        $RemoteTransform2D.position = ball_instance.position
+    else:        
         if not is_on_floor():
             velocity += get_gravity() * delta
         # Get the input direction and handle the movement/deceleration.
@@ -71,15 +75,16 @@ func _physics_process(delta: float) -> void:
             else:
                 #This might be able to be replaced with lerp but we'll leave it for now
                 velocity.x = move_toward(velocity.x, 0, SPEED)
-            
 
         move_and_slide()
+    
+    
 
 
 #This function checks for sprite movement to determine animation AND the sprite flip
 func _check_for_sprite_move(direction):
     #This cannot be an if/else or else a sprite flip will be forced
-    if direction and !controls_disabled:
+    if direction and not controls_disabled:
         sprite.play("walk")
 
         if direction < 0:
