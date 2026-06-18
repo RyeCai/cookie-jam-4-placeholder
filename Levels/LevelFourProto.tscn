@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="7_2m3a7"]
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_2sgw0"]
 [ext_resource type="Script" uid="uid://dmd13504n60u7" path="res://Levels/finish_zone.gd" id="9_6cptr"]
+[ext_resource type="AudioStream" uid="uid://5whcrdtw4cfy" path="res://SFX/VictoryNoise.wav" id="10_2sgw0"]
 [ext_resource type="Script" uid="uid://1hcetbuvstci" path="res://Puzzle Mechanic Objects/breakable.gd" id="10_7x6nx"]
 [ext_resource type="PackedScene" uid="uid://e0iu4mup5rox" path="res://Puzzle Mechanic Objects/BurrowHole.tscn" id="10_efi6l"]
 [ext_resource type="PackedScene" uid="uid://csd3wdunq7uxf" path="res://Puzzle Mechanic Objects/PangoButton.tscn" id="10_xsq18"]
@@ -16,6 +17,8 @@
 [ext_resource type="Script" uid="uid://c4ebpa3dsmkc7" path="res://Puzzle Mechanic Objects/bee_hive.gd" id="11_bb10h"]
 [ext_resource type="Texture2D" uid="uid://ba1ygjskepgt1" path="res://Art/beehive.png" id="12_hpnul"]
 [ext_resource type="PackedScene" uid="uid://h7tsgyai6uu2" path="res://Puzzle Mechanic Objects/TwigPile.tscn" id="16_hpnul"]
+[ext_resource type="PackedScene" uid="uid://ds01foms1lojk" path="res://UI Menus/WinScreen.tscn" id="17_2m3a7"]
+[ext_resource type="PackedScene" uid="uid://drfg45tfeom88" path="res://UI Menus/PauseScreen.tscn" id="19_6cptr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egbnb"]
 texture = ExtResource("2_m3n07")
@@ -372,11 +375,15 @@ axis_stretch_vertical = 1
 
 [node name="FinishZone" type="Area2D" parent="GameObjects" unique_id=1906968550]
 position = Vector2(300, 0)
+collision_mask = 7
 script = ExtResource("9_6cptr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/FinishZone" unique_id=2076826687]
 position = Vector2(135.5, -45.5)
 shape = SubResource("RectangleShape2D_ubtys")
+
+[node name="WinSoundPlayer" type="AudioStreamPlayer2D" parent="GameObjects/FinishZone" unique_id=1085339561]
+stream = ExtResource("10_2sgw0")
 
 [node name="Breakable" type="StaticBody2D" parent="GameObjects" unique_id=167316622]
 position = Vector2(151, 168)
@@ -455,6 +462,14 @@ texture = ExtResource("12_hpnul")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/BeeHive2" unique_id=580108143]
 position = Vector2(0, 86.5)
 shape = SubResource("RectangleShape2D_hpnul")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1223914579]
+
+[node name="WinScreen" parent="CanvasLayer" unique_id=2105276399 instance=ExtResource("17_2m3a7")]
+visible = false
+
+[node name="PauseScene" parent="CanvasLayer" unique_id=2083603710 instance=ExtResource("19_6cptr")]
+visible = false
 
 [connection signal="done_moving" from="Camera2D" to="Pangolin" method="_on_camera_2d_done_moving"]
 [connection signal="done_moving" from="Camera2D" to="Bird" method="_on_camera_2d_done_moving"]

@@ -128,3 +128,5 @@ frame_progress = 0.53543204
 update_position = false
 update_rotation = false
 update_scale = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1388211617]

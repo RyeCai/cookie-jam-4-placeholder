@@ -13,6 +13,12 @@ var controls_disabled: bool
 var ball_mode: bool
 var ball_instance: RigidBody2D
 
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+var jump_sound = preload("res://SFX/jump_MIX.wav")
+var ball_form_sound = preload("res://SFX/armorshing_MIX.wav")
+var roll_sound
+
+
 
 func _ready() -> void:
     sprite.play("idle")
@@ -47,6 +53,11 @@ func _physics_process(delta: float) -> void:
             ball_instance.add_to_group("Pangolin")
             add_child(ball_instance)
         ball_mode = not ball_mode
+        
+        ### Audio for ball
+        audio_player.stream = ball_form_sound
+        audio_player.play()
+        ###
     
     # Add the gravity.
     if ball_mode:
@@ -67,6 +78,10 @@ func _physics_process(delta: float) -> void:
             # Handle jump.
             if Input.is_action_just_pressed("jump") and is_on_floor():
                 velocity.y = JUMP_VELOCITY
+                ### Audio for ball
+                audio_player.stream = jump_sound
+                audio_player.play()
+                ###
 
             if direction:
                 #velocity.x = direction * SPEED

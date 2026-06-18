@@ -6,14 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://f4510pkw8w0v" path="res://Art/tileset_sky.png" id="3_3t8ww"]
 [ext_resource type="Texture2D" uid="uid://b8h7mssx55pge" path="res://Art/finish_block_blackwhite.png" id="4_6li7a"]
 [ext_resource type="PackedScene" uid="uid://csd3wdunq7uxf" path="res://Puzzle Mechanic Objects/PangoButton.tscn" id="5_aq23b"]
-[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/pangolin.tscn" id="6_wjdla"]
+[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="6_wjdla"]
 [ext_resource type="Script" uid="uid://b425htykftos8" path="res://Scenes/camera.gd" id="7_rfa74"]
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_pgnsf"]
 [ext_resource type="PackedScene" uid="uid://caewyqjmdmn6f" path="res://Puzzle Mechanic Objects/BirdButton.tscn" id="9_pgnsf"]
 [ext_resource type="Script" uid="uid://bss6v3ldb1f55" path="res://Levels/lvl1_locked_wall.gd" id="10_ubtys"]
 [ext_resource type="Script" uid="uid://dmd13504n60u7" path="res://Levels/finish_zone.gd" id="11_egbnb"]
 [ext_resource type="AudioStream" uid="uid://cxtyeea0asf48" path="res://SFX/doorunlock_MIX.wav" id="12_j66xm"]
+[ext_resource type="AudioStream" uid="uid://5whcrdtw4cfy" path="res://SFX/VictoryNoise.wav" id="14_higgl"]
+[ext_resource type="PackedScene" uid="uid://ds01foms1lojk" path="res://UI Menus/WinScreen.tscn" id="15_higgl"]
 [ext_resource type="PackedScene" uid="uid://h7tsgyai6uu2" path="res://Puzzle Mechanic Objects/TwigPile.tscn" id="15_qrcuy"]
+[ext_resource type="PackedScene" uid="uid://drfg45tfeom88" path="res://UI Menus/PauseScreen.tscn" id="17_ip2ff"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egbnb"]
 texture = ExtResource("3_3t8ww")
@@ -350,14 +353,26 @@ axis_stretch_vertical = 1
 
 [node name="FinishZone" type="Area2D" parent="GameObjects" unique_id=1906968550]
 position = Vector2(300, 0)
+collision_mask = 7
 script = ExtResource("11_egbnb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/FinishZone" unique_id=2076826687]
 position = Vector2(29, 0)
 shape = SubResource("RectangleShape2D_ubtys")
 
+[node name="WinSoundPlayer" type="AudioStreamPlayer2D" parent="GameObjects/FinishZone" unique_id=1342734692]
+stream = ExtResource("14_higgl")
+
 [node name="TwigPile" parent="." unique_id=261300687 instance=ExtResource("15_qrcuy")]
 position = Vector2(16, -16)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1710293788]
+
+[node name="WinScreen" parent="CanvasLayer" unique_id=2105276399 instance=ExtResource("15_higgl")]
+visible = false
+
+[node name="PauseScene" parent="CanvasLayer" unique_id=831101178 instance=ExtResource("17_ip2ff")]
+visible = false
 
 [connection signal="done_moving" from="Camera2D" to="Pangolin" method="_on_camera_2d_done_moving"]
 [connection signal="done_moving" from="Camera2D" to="Bird" method="_on_camera_2d_done_moving"]

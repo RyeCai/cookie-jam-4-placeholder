@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 signal controls_on(character: CharacterBody2D)
 @onready var peck_anim_play: AnimationPlayer = $PeckAnimPlay
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+var peck_sound = preload("res://SFX/peck_MIX.wav")
+var egg_sound = preload("res://SFX/peck_MIX.wav") #Needs to be updated nwith correct sound
 
 const SPEED = 200.0
 const FRICTION = 10.0
@@ -26,6 +29,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
     ### Only triggers when bird press 'e'
     if event.is_action_pressed("egg_drop") and not controls_disabled:
+        
+        ### Audio for egg
+        audio_player.stream = egg_sound
+        audio_player.play()
+        ###
+        
         var spawned_egg = bird_egg.instantiate()
         var parent_node = scene_root.get_first_node_in_group("GameObjects")
         parent_node.add_child(spawned_egg)
@@ -51,6 +60,11 @@ func _physics_process(delta: float) -> void:
         velocity = lerp(velocity, direction * SPEED, FRICTION * delta)
         if Input.is_action_just_pressed("bird_peck"):
             peck_anim_play.play("PeckAnim") 
+            
+            ### Audio for egg
+            audio_player.stream = peck_sound
+            audio_player.play()
+            ###
     # if direction:
     #     velocity = direction * SPEED
     # else:

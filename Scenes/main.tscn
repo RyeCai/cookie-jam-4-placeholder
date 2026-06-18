@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://b425htykftos8" path="res://Scenes/camera.gd" id="1_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/pangolin.tscn" id="3_kry3j"]
+[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="3_kry3j"]
 [ext_resource type="Texture2D" uid="uid://dxahc14hodrv" path="res://Art/tileset_forest.png" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://cavsp5eq4w2yj" path="res://Scenes/platform.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://tykq8x3i8oju" path="res://Puzzle Mechanic Objects/breakable.tscn" id="6_21xkr"]

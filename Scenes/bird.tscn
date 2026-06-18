@@ -124,3 +124,5 @@ update_scale = false
 
 [node name="PeckAnimPlay" type="AnimationPlayer" parent="." unique_id=521433287]
 libraries/ = SubResource("AnimationLibrary_rr33m")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1762622932]
