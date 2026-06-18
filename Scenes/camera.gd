@@ -19,12 +19,13 @@ func _process(delta: float) -> void:
             camera_speed = delta * (panning_speed+ball_node.linear_velocity.length()) 
             pos = ball_node.global_position
         else:
-            camera_speed = delta * (panning_speed+current_char.velocity.length())
+            # clamp used to limit speed when jumping
+            camera_speed = delta * (panning_speed+clampf(current_char.velocity.length(), 0, 150))
             pos = current_char.position  
         var interpolated_pos: Vector2 = position.lerp(pos, camera_speed)
         position = interpolated_pos
         # camera currently stops moving at an arbitrary value
-        if abs(interpolated_pos.length() - current_char.position.length()) < 0.05:
+        if abs(interpolated_pos.length() - current_char.position.length()) < 0.08:
             done_moving.emit()
             camera_moving = false
 
