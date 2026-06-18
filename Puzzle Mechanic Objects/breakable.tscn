@@ -11,7 +11,7 @@ size = Vector2(125, 125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7trq6"]
 size = Vector2(128, 128)
 
-[node name="StaticBody2D" type="StaticBody2D" unique_id=167316622]
+[node name="Breakable" type="StaticBody2D" unique_id=167316622]
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_2jqqc")
 script = ExtResource("1_2jqqc")
