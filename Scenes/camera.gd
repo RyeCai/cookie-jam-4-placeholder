@@ -16,10 +16,10 @@ func _process(delta: float) -> void:
         if current_char.has_node("Ball"):
             var ball_node: RigidBody2D = current_char.get_node("Ball")
             # Account for character speed when moving the camera
-            camera_speed = delta *(ball_node.linear_velocity.length()) 
+            camera_speed = delta * (panning_speed+ball_node.linear_velocity.length()) 
             pos = ball_node.global_position
         else:
-            camera_speed = delta *(panning_speed+current_char.velocity.length())
+            camera_speed = delta * (panning_speed+current_char.velocity.length())
             pos = current_char.position  
         var interpolated_pos: Vector2 = position.lerp(pos, camera_speed)
         position = interpolated_pos
