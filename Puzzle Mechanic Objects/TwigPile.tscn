@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://h7tsgyai6uu2"]
+
+[ext_resource type="Texture2D" uid="uid://ktm3y67qd1f3" path="res://Art/twig.png" id="1_r4fkr"]
+[ext_resource type="Script" uid="uid://cacmacqi62l2t" path="res://Puzzle Mechanic Objects/twig_pile.gd" id="1_x1igw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4fkr"]
+size = Vector2(54, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1igw"]
+size = Vector2(40, 22)
+
+[node name="TwigPile" type="Area2D" unique_id=261300687]
+collision_mask = 5
+script = ExtResource("1_x1igw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=996051906]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -24.000002
+offset_right = -3.0
+offset_bottom = 4.476778
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.40297082
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("1_r4fkr")
+region_rect = Rect2(0, 0, 16, 16)
+axis_stretch_vertical = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect" unique_id=1015011330]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.084316
+offset_top = -24.200344
+offset_right = 30.084312
+offset_bottom = 4.276436
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.81738466
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("1_r4fkr")
+region_rect = Rect2(0, 0, 16, 16)
+axis_stretch_vertical = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="NinePatchRect" unique_id=1448725432]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0424914
+offset_top = -20.821194
+offset_right = 11.957504
+offset_bottom = 7.655588
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.9191759
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("1_r4fkr")
+region_rect = Rect2(0, 0, 16, 16)
+axis_stretch_vertical = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1776006502]
+position = Vector2(1, -15)
+shape = SubResource("RectangleShape2D_r4fkr")
+debug_color = Color(0, 0.6373265, 0.39760685, 0.41960785)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1550227072]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=275400254]
+position = Vector2(2, -11)
+shape = SubResource("RectangleShape2D_x1igw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

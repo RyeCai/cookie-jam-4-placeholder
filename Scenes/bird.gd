@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal controls_on(character: CharacterBody2D)
+@onready var peck_anim_play: AnimationPlayer = $PeckAnimPlay
 
 const SPEED = 200.0
 const FRICTION = 10.0
@@ -11,12 +12,25 @@ var disabled: bool
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var camera: Camera2D
 
+var bird_egg := preload("res://Scenes/BirdEgg.tscn")
+var scene_root #Declares variable here to be later defined in ready function- holds the root node of current scene
+
 func _ready() -> void:
     sprite.play("fly")
     disabled = false
     $RemoteTransform2D.remote_path = camera.get_path()
     controls_on.emit(self)
     #camera.done_moving.connect(_on_camera_2d_done_moving)
+    
+    scene_root = get_tree()
+    
+func _input(event: InputEvent) -> void:
+    ### Only triggers when bird press 'e'
+    if event.is_action_pressed("egg_drop") and not disabled:
+        var spawned_egg = bird_egg.instantiate()
+        var parent_node = scene_root.get_first_node_in_group("GameObjects")
+        parent_node.add_child(spawned_egg)
+        spawned_egg.global_position = self.global_position + Vector2(0, 20)
 
 func _physics_process(delta: float) -> void:
     # Get the input direction and handle the movement/deceleration.
@@ -46,7 +60,8 @@ func _physics_process(delta: float) -> void:
     #sprite.play("idle")
 
     move_and_slide()
-
+    if Input.is_action_just_pressed("bird_peck"):
+        peck_anim_play.play("PeckAnim")
 
 #This function checks for sprite movement to determine animation AND the sprite flip
 func _check_for_sprite_move(direction):

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b11u2pjqh87ka"]
+
+[ext_resource type="Texture2D" uid="uid://cdhbbu4i5r60w" path="res://Art/bees.png" id="1_4jpjt"]
+[ext_resource type="Script" uid="uid://1srwtbr0n6jm" path="res://Puzzle Mechanic Objects/bees.gd" id="1_o88de"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o88de"]
+atlas = ExtResource("1_4jpjt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcp1c"]
+atlas = ExtResource("1_4jpjt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asmfl"]
+atlas = ExtResource("1_4jpjt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ld11q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o88de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcp1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asmfl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o88de"]
+radius = 14.0
+
+[node name="Bees" type="CharacterBody2D" unique_id=1206353087]
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_o88de")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1681708363]
+sprite_frames = SubResource("SpriteFrames_ld11q")
+autoplay = "default"
+frame_progress = 0.5703245
+
+[node name="Timer" type="Timer" parent="." unique_id=215695108]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=1560362797]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=124314009]
+shape = SubResource("CircleShape2D_o88de")
+debug_color = Color(1, 0.017164148, 0.016224107, 0.41960785)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]

@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://tykq8x3i8oju"]
 
 [ext_resource type="Script" uid="uid://1hcetbuvstci" path="res://Puzzle Mechanic Objects/breakable.gd" id="1_2jqqc"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_627wa"]
+[ext_resource type="Texture2D" uid="uid://beltfmiugbxe2" path="res://Art/tileset_forest2.png" id="2_2jqqc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2jqqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33cp3"]
-size = Vector2(125, 125)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7trq6"]
-size = Vector2(128, 128)
+size = Vector2(16, 16)
 
 [node name="Breakable" type="StaticBody2D" unique_id=167316622]
 collision_mask = 14
@@ -20,8 +20,20 @@ velocity_threshold = 35.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708610494]
 shape = SubResource("RectangleShape2D_33cp3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=669360917]
-texture = ExtResource("2_627wa")
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1688922742]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2jqqc")
+region_rect = Rect2(64, 48, 16, 16)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=225110670]
 collision_mask = 8
