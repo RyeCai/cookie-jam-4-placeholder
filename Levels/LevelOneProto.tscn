@@ -6,13 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://f4510pkw8w0v" path="res://Art/tileset_sky.png" id="3_3t8ww"]
 [ext_resource type="Texture2D" uid="uid://b8h7mssx55pge" path="res://Art/finish_block_blackwhite.png" id="4_6li7a"]
 [ext_resource type="PackedScene" uid="uid://csd3wdunq7uxf" path="res://Puzzle Mechanic Objects/PangoButton.tscn" id="5_aq23b"]
-[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="6_wjdla"]
-[ext_resource type="Script" uid="uid://bj6ombc8uykox" path="res://Scenes/camera.gd" id="7_rfa74"]
+[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/pangolin.tscn" id="6_wjdla"]
+[ext_resource type="Script" uid="uid://b425htykftos8" path="res://Scenes/camera.gd" id="7_rfa74"]
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_pgnsf"]
 [ext_resource type="PackedScene" uid="uid://caewyqjmdmn6f" path="res://Puzzle Mechanic Objects/BirdButton.tscn" id="9_pgnsf"]
 [ext_resource type="Script" uid="uid://bss6v3ldb1f55" path="res://Levels/lvl1_locked_wall.gd" id="10_ubtys"]
 [ext_resource type="Script" uid="uid://dmd13504n60u7" path="res://Levels/finish_zone.gd" id="11_egbnb"]
 [ext_resource type="AudioStream" uid="uid://cxtyeea0asf48" path="res://SFX/doorunlock_MIX.wav" id="12_j66xm"]
+[ext_resource type="PackedScene" uid="uid://h7tsgyai6uu2" path="res://Puzzle Mechanic Objects/TwigPile.tscn" id="15_qrcuy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egbnb"]
 texture = ExtResource("3_3t8ww")
@@ -319,7 +320,7 @@ unique_name_in_owner = true
 position = Vector2(-168, -80)
 camera = NodePath("../Camera2D")
 
-[node name="GameObjects" type="Node2D" parent="." unique_id=1245912295]
+[node name="GameObjects" type="Node2D" parent="." unique_id=1245912295 groups=["GameObjects"]]
 
 [node name="Wall1PangoButton" parent="GameObjects" unique_id=1809661226 instance=ExtResource("5_aq23b")]
 position = Vector2(-96, 128)
@@ -354,6 +355,9 @@ script = ExtResource("11_egbnb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/FinishZone" unique_id=2076826687]
 position = Vector2(29, 0)
 shape = SubResource("RectangleShape2D_ubtys")
+
+[node name="TwigPile" parent="." unique_id=261300687 instance=ExtResource("15_qrcuy")]
+position = Vector2(16, -16)
 
 [connection signal="done_moving" from="Camera2D" to="Pangolin" method="_on_camera_2d_done_moving"]
 [connection signal="done_moving" from="Camera2D" to="Bird" method="_on_camera_2d_done_moving"]

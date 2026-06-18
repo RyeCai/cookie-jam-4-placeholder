@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
             $AnimatedSprite2D.visible = false
             ball_instance = pango_ball_scene.instantiate()
             ball_instance.linear_velocity = velocity
+            ball_instance.add_to_group("Pangolin")
             add_child(ball_instance)
         ball_mode = not ball_mode
     
@@ -64,7 +65,7 @@ func _physics_process(delta: float) -> void:
             sprite.play("jump")
         if not controls_disabled:
             # Handle jump.
-            if Input.is_action_just_pressed("move_up") and is_on_floor():
+            if Input.is_action_just_pressed("jump") and is_on_floor():
                 velocity.y = JUMP_VELOCITY
 
             if direction:

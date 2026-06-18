@@ -63,11 +63,47 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mcegt"]
-radius = 12.0
+radius = 7.071068
+
+[sub_resource type="Animation" id="Animation_dnvpi"]
+resource_name = "PeckAnim"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(11.6, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vl8r2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rr33m"]
+_data = {
+&"PeckAnim": SubResource("Animation_dnvpi"),
+&"RESET": SubResource("Animation_vl8r2")
+}
 
 [node name="Bird" type="CharacterBody2D" unique_id=1043166582 groups=["Bird"]]
 collision_layer = 4
-collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_mcegt")
 
@@ -79,9 +115,12 @@ frame = 1
 frame_progress = 0.9652769
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336916907]
-position = Vector2(0, 6)
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_mcegt")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=834631985]
 update_rotation = false
 update_scale = false
+
+[node name="PeckAnimPlay" type="AnimationPlayer" parent="." unique_id=521433287]
+libraries/ = SubResource("AnimationLibrary_rr33m")

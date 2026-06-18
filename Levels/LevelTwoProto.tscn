@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dxahc14hodrv" path="res://Art/tileset_forest.png" id="3_e0it2"]
 [ext_resource type="Texture2D" uid="uid://b8h7mssx55pge" path="res://Art/finish_block_blackwhite.png" id="4_jip71"]
 [ext_resource type="Texture2D" uid="uid://beltfmiugbxe2" path="res://Art/tileset_forest2.png" id="5_ywwk3"]
-[ext_resource type="Script" uid="uid://bj6ombc8uykox" path="res://Scenes/camera.gd" id="6_0ctxp"]
+[ext_resource type="Script" uid="uid://b425htykftos8" path="res://Scenes/camera.gd" id="6_0ctxp"]
 [ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="7_kfwy4"]
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_4a15p"]
+[ext_resource type="Script" uid="uid://1hcetbuvstci" path="res://Puzzle Mechanic Objects/breakable.gd" id="10_4xh80"]
 [ext_resource type="PackedScene" uid="uid://e0iu4mup5rox" path="res://Puzzle Mechanic Objects/BurrowHole.tscn" id="10_oqqcm"]
 [ext_resource type="Script" uid="uid://dmd13504n60u7" path="res://Levels/finish_zone.gd" id="12_735bq"]
 
@@ -283,6 +284,14 @@ size = Vector2(14, 280)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubtys"]
 size = Vector2(95, 560)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2jqqc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xh80"]
+size = Vector2(16, 416)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4jai"]
+size = Vector2(16, 416)
+
 [node name="LevelTwoProto" type="Node2D" unique_id=402738187]
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1550366287]
@@ -316,7 +325,7 @@ unique_name_in_owner = true
 position = Vector2(-408, -208)
 camera = NodePath("../Camera2D")
 
-[node name="GameObjects" type="Node2D" parent="." unique_id=1245912295]
+[node name="GameObjects" type="Node2D" parent="." unique_id=1245912295 groups=["GameObjects"]]
 
 [node name="LockedWall" type="StaticBody2D" parent="GameObjects" unique_id=612694987]
 position = Vector2(167.865, 0)
@@ -342,6 +351,40 @@ script = ExtResource("12_735bq")
 position = Vector2(108.5, -64)
 shape = SubResource("RectangleShape2D_ubtys")
 
+[node name="Breakable" type="StaticBody2D" parent="GameObjects/FinishZone" unique_id=167316622]
+position = Vector2(-380, 136)
+collision_mask = 14
+physics_material_override = SubResource("PhysicsMaterial_2jqqc")
+script = ExtResource("10_4xh80")
+velocity_threshold = 35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/FinishZone/Breakable" unique_id=708610494]
+position = Vector2(0, -200)
+shape = SubResource("RectangleShape2D_4xh80")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameObjects/FinishZone/Breakable" unique_id=1688922742]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -408.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ywwk3")
+region_rect = Rect2(64, 48, 16, 16)
+axis_stretch_vertical = 1
+
+[node name="Area2D" type="Area2D" parent="GameObjects/FinishZone/Breakable" unique_id=225110670]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/FinishZone/Breakable/Area2D" unique_id=431637233]
+position = Vector2(0, -200)
+shape = SubResource("RectangleShape2D_l4jai")
+
 [node name="BurrowHole" parent="." unique_id=26330799 node_paths=PackedStringArray("connected_burrow") instance=ExtResource("10_oqqcm")]
 position = Vector2(128, 128)
 connected_burrow = NodePath("../BurrowHole2")
@@ -356,3 +399,4 @@ connected_burrow = NodePath("../BurrowHole")
 [connection signal="controls_on" from="Bird" to="Camera2D" method="_on_bird_controls_on"]
 [connection signal="body_entered" from="GameObjects/FinishZone" to="GameObjects/FinishZone" method="_on_body_entered"]
 [connection signal="body_exited" from="GameObjects/FinishZone" to="GameObjects/FinishZone" method="_on_body_exited"]
+[connection signal="body_entered" from="GameObjects/FinishZone/Breakable/Area2D" to="GameObjects/FinishZone/Breakable" method="_on_area_2d_body_entered"]

@@ -19,6 +19,5 @@ func _on_body_exited(body: Node2D) -> void:
         bird_in = false
 
 
-func _process(delta: float) -> void:
-    if pango_in == true and bird_in == true:
-        win_achieved == true
+func _process(_delta: float) -> void:
+    win_achieved = bird_in and pango_in

@@ -15,6 +15,6 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
     if inside_range == true:
-        if event is InputEventKey and event.keycode == KEY_E and event.is_pressed():
+        if event is InputEventKey and event.is_action_pressed("pango_burrow") and event.is_pressed():
             var pango = get_tree().get_first_node_in_group("Pangolin")
             pango.global_position = connected_burrow.teleport_location.global_position
