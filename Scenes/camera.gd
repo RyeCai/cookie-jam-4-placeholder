@@ -5,6 +5,9 @@ signal done_moving
 @export var panning_speed: float = 7.0
 var current_char: CharacterBody2D
 var camera_moving: bool = false
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+    pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

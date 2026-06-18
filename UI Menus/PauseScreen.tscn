@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://drfg45tfeom88"]
+
+[ext_resource type="FontFile" uid="uid://cuylcghhd2avw" path="res://Fonts/ARCO for OSX.otf" id="1_xq4k4"]
+[ext_resource type="Texture2D" uid="uid://gtiar62y7ye2" path="res://Art/pangolin_idle.png" id="2_mrxv4"]
+[ext_resource type="Texture2D" uid="uid://b2e2a6mohbhf5" path="res://Art/birdfly.png" id="3_dbrbw"]
+[ext_resource type="Script" uid="uid://b2xpq1iopo7jf" path="res://UI Menus/button_main_menu.gd" id="4_bs415"]
+[ext_resource type="Script" uid="uid://bmnmmonb2oab4" path="res://UI Menus/level_select.gd" id="4_dbrbw"]
+[ext_resource type="Script" uid="uid://b4joe0tjjkrdt" path="res://UI Menus/button_quit_game.gd" id="4_gk1hm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i6bs7"]
+font = ExtResource("1_xq4k4")
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_gk1hm"]
+font = ExtResource("1_xq4k4")
+font_size = 27
+
+[sub_resource type="LabelSettings" id="LabelSettings_bs415"]
+font = ExtResource("1_xq4k4")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hn7c6"]
+font = ExtResource("1_xq4k4")
+font_size = 11
+
+[node name="PauseScene" type="Control" unique_id=2105276399]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=2023672181]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Paused" type="Label" parent="BackgroundPanel" unique_id=1767913834]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 59.63
+offset_bottom = 136.63005
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_i6bs7")
+horizontal_alignment = 1
+
+[node name="KeybindsReference" type="Label" parent="BackgroundPanel" unique_id=549060348]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -237.0
+offset_right = 223.0
+offset_bottom = -159.99994
+grow_vertical = 2
+text = "Keybinds"
+label_settings = SubResource("LabelSettings_gk1hm")
+horizontal_alignment = 1
+
+[node name="WASD" type="Label" parent="BackgroundPanel/KeybindsReference" unique_id=1508286585]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 104.0
+offset_right = -15.0
+offset_bottom = 122.0
+text = "WASD"
+label_settings = SubResource("LabelSettings_bs415")
+
+[node name="E" type="Label" parent="BackgroundPanel/KeybindsReference" unique_id=761165032]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 160.0
+offset_right = -15.0
+offset_bottom = 178.0
+text = "E"
+label_settings = SubResource("LabelSettings_bs415")
+horizontal_alignment = 1
+
+[node name="F" type="Label" parent="BackgroundPanel/KeybindsReference" unique_id=238593128]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 272.0
+offset_right = -15.0
+offset_bottom = 290.0
+text = "F"
+label_settings = SubResource("LabelSettings_bs415")
+horizontal_alignment = 1
+
+[node name="Space" type="Label" parent="BackgroundPanel/KeybindsReference" unique_id=1552974012]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 216.0
+offset_right = -15.0
+offset_bottom = 234.0
+text = "Space"
+label_settings = SubResource("LabelSettings_bs415")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundPanel/KeybindsReference" unique_id=1045112990]
+layout_mode = 0
+offset_left = 88.945
+offset_top = 64.0
+offset_right = 90.945
+offset_bottom = 264.0
+
+[node name="KeybindsVBox" type="VBoxContainer" parent="BackgroundPanel" unique_id=582905743]
+custom_minimum_size = Vector2(200, 400)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.265
+offset_top = -200.0
+offset_right = 266.26508
+offset_bottom = 200.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel/KeybindsVBox" unique_id=161368610]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundPanel/KeybindsVBox/HBoxContainer" unique_id=2064426032]
+position = Vector2(53.735, 19)
+texture = ExtResource("2_mrxv4")
+hframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="BackgroundPanel/KeybindsVBox/HBoxContainer" unique_id=76915041]
+position = Vector2(149.735, 27)
+texture = ExtResource("3_dbrbw")
+hframes = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BackgroundPanel/KeybindsVBox" unique_id=299854808]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 65
+alignment = 1
+
+[node name="Walk" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer2" unique_id=617265263]
+layout_mode = 2
+text = "Walk"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="Fly" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer2" unique_id=1529383526]
+layout_mode = 2
+text = "Fly"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="BackgroundPanel/KeybindsVBox" unique_id=463762680]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="BallForm" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer4" unique_id=1181938507]
+layout_mode = 2
+text = "Ball Form"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="Egg" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer4" unique_id=1558911684]
+layout_mode = 2
+text = "Drop Egg"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="BackgroundPanel/KeybindsVBox" unique_id=1261319091]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="Jump" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer5" unique_id=453110168]
+layout_mode = 2
+text = "Jump"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="Peck" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer5" unique_id=1331002653]
+layout_mode = 2
+text = "Peck"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="BackgroundPanel/KeybindsVBox" unique_id=1630354788]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 65
+alignment = 1
+
+[node name="SwapCamera" type="Label" parent="BackgroundPanel/KeybindsVBox/HBoxContainer3" unique_id=1471696802]
+layout_mode = 2
+text = "Swap Camera Position"
+label_settings = SubResource("LabelSettings_hn7c6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel" unique_id=1154632916]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.5
+offset_top = 291.14
+offset_right = 208.5
+offset_bottom = 333.14008
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="ButtonMainMenu" type="Button" parent="BackgroundPanel/HBoxContainer" unique_id=1530803188]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 24
+text = "Main Menu"
+script = ExtResource("4_bs415")
+
+[node name="ButtonQuitGame" type="Button" parent="BackgroundPanel/HBoxContainer" unique_id=923614398]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 24
+text = "Quit Game"
+script = ExtResource("4_gk1hm")
+
+[node name="LevelSelectVBox" type="VBoxContainer" parent="BackgroundPanel" unique_id=839606888]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -123.29999
+offset_right = 114.0
+offset_bottom = 230.7002
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+alignment = 1
+script = ExtResource("4_dbrbw")
+
+[node name="ButtonLevelOne" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1406157714]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 32
+text = "Level One"
+
+[node name="ButtonLevelTwo" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1489637905]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 32
+text = "Level Two"
+
+[node name="ButtonLevelThree" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1543541731]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 32
+text = "Level Three"
+
+[node name="ButtonLevelFour" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1800137623]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 32
+text = "Level Four"
+
+[node name="ButtonLevelFive" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=1869588475]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 32
+text = "Level Five"
+
+[connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonMainMenu" to="BackgroundPanel/HBoxContainer/ButtonMainMenu" method="_on_pressed"]
+[connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonQuitGame" to="BackgroundPanel/HBoxContainer/ButtonQuitGame" method="_on_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelOne" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_one_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelTwo" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_two_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelThree" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_three_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFour" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_four_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFive" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_five_pressed"]
