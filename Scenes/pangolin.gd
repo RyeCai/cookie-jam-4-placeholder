@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
             $AnimatedSprite2D.visible = false
             ball_instance = pango_ball_scene.instantiate()
             ball_instance.linear_velocity = velocity
+            ball_instance.add_to_group("Pangolin")
             add_child(ball_instance)
         ball_mode = not ball_mode
     

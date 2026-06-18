@@ -7,7 +7,7 @@ const SPEED = 200.0
 const FRICTION = 10.0
 const JUMP_VELOCITY = -400.0
 
-var disabled: bool
+var controls_disabled: bool
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var camera: Camera2D
@@ -17,16 +17,15 @@ var scene_root #Declares variable here to be later defined in ready function- ho
 
 func _ready() -> void:
     sprite.play("fly")
-    disabled = false
+    controls_disabled = false
     $RemoteTransform2D.remote_path = camera.get_path()
     controls_on.emit(self)
-    #camera.done_moving.connect(_on_camera_2d_done_moving)
     
     scene_root = get_tree()
     
 func _input(event: InputEvent) -> void:
     ### Only triggers when bird press 'e'
-    if event.is_action_pressed("egg_drop") and not disabled:
+    if event.is_action_pressed("egg_drop") and not controls_disabled:
         var spawned_egg = bird_egg.instantiate()
         var parent_node = scene_root.get_first_node_in_group("GameObjects")
         parent_node.add_child(spawned_egg)
@@ -36,13 +35,13 @@ func _physics_process(delta: float) -> void:
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
     if Input.is_action_just_pressed("switch_char"):
-            disabled = not disabled
+            controls_disabled = not controls_disabled
             $RemoteTransform2D.update_position = false
-            if disabled:
+            if controls_disabled:
                 velocity = Vector2.ZERO
             else:
                 controls_on.emit(self)
-    if not disabled:
+    if not controls_disabled:
         var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
         direction = direction.normalized()
 
@@ -50,6 +49,8 @@ func _physics_process(delta: float) -> void:
 
         #velocity = direction * SPEED
         velocity = lerp(velocity, direction * SPEED, FRICTION * delta)
+        if Input.is_action_just_pressed("bird_peck"):
+            peck_anim_play.play("PeckAnim") 
     # if direction:
     #     velocity = direction * SPEED
     # else:
@@ -60,8 +61,7 @@ func _physics_process(delta: float) -> void:
     #sprite.play("idle")
 
     move_and_slide()
-    if Input.is_action_just_pressed("bird_peck"):
-        peck_anim_play.play("PeckAnim")
+    
 
 #This function checks for sprite movement to determine animation AND the sprite flip
 func _check_for_sprite_move(direction):
@@ -74,7 +74,7 @@ func _check_for_sprite_move(direction):
 
 
 func _on_camera_2d_done_moving() -> void:
-    if not disabled:
+    if not controls_disabled:
         $RemoteTransform2D.update_position = true
     else:
         $RemoteTransform2D.update_position = false

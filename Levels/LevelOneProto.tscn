@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://f4510pkw8w0v" path="res://Art/tileset_sky.png" id="3_3t8ww"]
 [ext_resource type="Texture2D" uid="uid://b8h7mssx55pge" path="res://Art/finish_block_blackwhite.png" id="4_6li7a"]
 [ext_resource type="PackedScene" uid="uid://csd3wdunq7uxf" path="res://Puzzle Mechanic Objects/PangoButton.tscn" id="5_aq23b"]
-[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="6_wjdla"]
+[ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/pangolin.tscn" id="6_wjdla"]
 [ext_resource type="Script" uid="uid://b425htykftos8" path="res://Scenes/camera.gd" id="7_rfa74"]
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_pgnsf"]
 [ext_resource type="PackedScene" uid="uid://caewyqjmdmn6f" path="res://Puzzle Mechanic Objects/BirdButton.tscn" id="9_pgnsf"]

@@ -8,7 +8,7 @@ extends StaticBody2D
 
 var task_complete : bool = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     if task_complete == false:
         if pango_button.button_pressed == true and bird_button.button_pressed == true:
             wall_sprite.visible = false
