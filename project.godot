@@ -63,6 +63,7 @@ pango_ball={
 2d_physics/layer_1="world"
 2d_physics/layer_2="pangolin"
 2d_physics/layer_3="bird"
+2d_physics/layer_4="physics_object"
 
 [physics]
 

@@ -20,7 +20,6 @@ func _ready() -> void:
     $RemoteTransform2D.remote_path = camera.get_path()
     $RemoteTransform2D.update_position = false
     ball_mode = false
-    #camera.done_moving.connect(_on_camera_2d_done_moving)
 
 
 func _physics_process(delta: float) -> void:

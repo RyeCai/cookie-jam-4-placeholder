@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://tykq8x3i8oju"]
+
+[ext_resource type="Script" uid="uid://1hcetbuvstci" path="res://Puzzle Mechanic Objects/breakable.gd" id="1_2jqqc"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_627wa"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2jqqc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33cp3"]
+size = Vector2(125, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7trq6"]
+size = Vector2(128, 128)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=167316622]
+collision_mask = 14
+physics_material_override = SubResource("PhysicsMaterial_2jqqc")
+script = ExtResource("1_2jqqc")
+velocity_threshold = 35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708610494]
+shape = SubResource("RectangleShape2D_33cp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=669360917]
+texture = ExtResource("2_627wa")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=225110670]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=431637233]
+shape = SubResource("RectangleShape2D_7trq6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
