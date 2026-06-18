@@ -20,7 +20,6 @@ func _ready() -> void:
     $RemoteTransform2D.remote_path = camera.get_path()
     $RemoteTransform2D.update_position = false
     ball_mode = false
-    #camera.done_moving.connect(_on_camera_2d_done_moving)
 
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +35,6 @@ func _physics_process(delta: float) -> void:
         if ball_mode:
             var pos_snapshot: Vector2 = ball_instance.global_position
             position = ball_instance.global_position
-            #ball_instance.call_deferred("queue_free")
             ball_instance.queue_free()
             $CollisionShape2D.set_deferred("disabled", false)
             $AnimatedSprite2D.visible = true
@@ -45,6 +43,7 @@ func _physics_process(delta: float) -> void:
             $CollisionShape2D.set_deferred("disabled", true)
             $AnimatedSprite2D.visible = false
             ball_instance = pango_ball_scene.instantiate()
+            ball_instance.linear_velocity = velocity
             add_child(ball_instance)
         ball_mode = not ball_mode
     

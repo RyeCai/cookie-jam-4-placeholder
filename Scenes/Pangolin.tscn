@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cp3radpus4u5g"]
 
-[ext_resource type="Script" uid="uid://dum1uuna5y316" path="res://Scenes/pangolin.gd" id="1_m0pmm"]
+[ext_resource type="Script" uid="uid://byc2vdibeb8x6" path="res://Scenes/pangolin.gd" id="1_m0pmm"]
 [ext_resource type="Texture2D" uid="uid://gtiar62y7ye2" path="res://Art/pangolin_idle.png" id="2_m0pmm"]
 [ext_resource type="Texture2D" uid="uid://b5j874onok34k" path="res://Art/pangolin_jump.png" id="3_8od0q"]
 [ext_resource type="Texture2D" uid="uid://bvjdqyebt7odj" path="res://Art/pangolin_walk.png" id="4_b1fci"]

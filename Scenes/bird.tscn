@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjjqahvrxd2yf"]
 
-[ext_resource type="Script" uid="uid://celx12t844655" path="res://Scenes/bird.gd" id="1_mcegt"]
+[ext_resource type="Script" uid="uid://bn6s71u4t5eny" path="res://Scenes/bird.gd" id="1_mcegt"]
 [ext_resource type="Texture2D" uid="uid://b2e2a6mohbhf5" path="res://Art/birdfly.png" id="2_dnvpi"]
 [ext_resource type="Texture2D" uid="uid://862nnah4apht" path="res://Art/birdidle.png" id="2_mcegt"]
 
