@@ -10,8 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_3sb0i"]
 [ext_resource type="Script" uid="uid://dmd13504n60u7" path="res://Levels/finish_zone.gd" id="9_6h6xv"]
 [ext_resource type="PackedScene" uid="uid://csd3wdunq7uxf" path="res://Puzzle Mechanic Objects/PangoButton.tscn" id="10_cl1vb"]
+[ext_resource type="AudioStream" uid="uid://5whcrdtw4cfy" path="res://SFX/VictoryNoise.wav" id="10_egv7e"]
 [ext_resource type="PackedScene" uid="uid://caewyqjmdmn6f" path="res://Puzzle Mechanic Objects/BirdButton.tscn" id="11_ukju8"]
 [ext_resource type="PackedScene" uid="uid://h7tsgyai6uu2" path="res://Puzzle Mechanic Objects/TwigPile.tscn" id="12_njakp"]
+[ext_resource type="PackedScene" uid="uid://ds01foms1lojk" path="res://UI Menus/WinScreen.tscn" id="13_gokcp"]
+[ext_resource type="PackedScene" uid="uid://drfg45tfeom88" path="res://UI Menus/PauseScreen.tscn" id="15_ic3xd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egbnb"]
 texture = ExtResource("2_ukju8")
@@ -338,11 +341,15 @@ axis_stretch_vertical = 1
 
 [node name="FinishZone" type="Area2D" parent="GameObjects" unique_id=1906968550]
 position = Vector2(300, 0)
+collision_mask = 7
 script = ExtResource("9_6h6xv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/FinishZone" unique_id=2076826687]
 position = Vector2(125.5, -52.5)
 shape = SubResource("RectangleShape2D_ubtys")
+
+[node name="WinSoundPlayer" type="AudioStreamPlayer2D" parent="GameObjects/FinishZone" unique_id=919028611]
+stream = ExtResource("10_egv7e")
 
 [node name="PangoButton" parent="GameObjects" unique_id=1809661226 instance=ExtResource("10_cl1vb")]
 position = Vector2(-24, -77)
@@ -361,6 +368,14 @@ position = Vector2(-156, 17)
 
 [node name="TwigPile2" parent="GameObjects" unique_id=426768430 instance=ExtResource("12_njakp")]
 position = Vector2(100, 33)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=320924003]
+
+[node name="WinScreen" parent="CanvasLayer" unique_id=2105276399 instance=ExtResource("13_gokcp")]
+visible = false
+
+[node name="PauseScene" parent="CanvasLayer" unique_id=1158989691 instance=ExtResource("15_ic3xd")]
+visible = false
 
 [connection signal="done_moving" from="Camera2D" to="Pangolin" method="_on_camera_2d_done_moving"]
 [connection signal="done_moving" from="Camera2D" to="Bird" method="_on_camera_2d_done_moving"]

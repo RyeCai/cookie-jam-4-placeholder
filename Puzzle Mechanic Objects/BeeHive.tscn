@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4ebpa3dsmkc7" path="res://Puzzle Mechanic Objects/bee_hive.gd" id="1_1wgx6"]
 [ext_resource type="Texture2D" uid="uid://ba1ygjskepgt1" path="res://Art/beehive.png" id="1_v3hj0"]
+[ext_resource type="AudioStream" uid="uid://bbmns35yt1hpv" path="res://SFX/beehive_MIX.wav" id="3_87l0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wgx6"]
 size = Vector2(112, 96)
@@ -16,5 +17,11 @@ texture = ExtResource("1_v3hj0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=265449660]
 position = Vector2(0, 40)
 shape = SubResource("RectangleShape2D_1wgx6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1542069395]
+stream = ExtResource("3_87l0f")
+autoplay = true
+max_distance = 190.0
+attenuation = 2.0705302
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

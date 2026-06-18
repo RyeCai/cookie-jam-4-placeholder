@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dnqo1jvv4x6w4"
-path="res://.godot/imported/MainMenu.wav-9aa825f65492a2eb6cd284e13252a37b.sample"
+uid="uid://bbmns35yt1hpv"
+path="res://.godot/imported/beehive_MIX.wav-d7ea43c58e15b2c63fd9d8b019a8a9c7.sample"
 
 [deps]
 
-source_file="res://Music/MainMenu.wav"
-dest_files=["res://.godot/imported/MainMenu.wav-9aa825f65492a2eb6cd284e13252a37b.sample"]
+source_file="res://SFX/beehive_MIX.wav"
+dest_files=["res://.godot/imported/beehive_MIX.wav-d7ea43c58e15b2c63fd9d8b019a8a9c7.sample"]
 
 [params]
 
