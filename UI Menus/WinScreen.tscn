@@ -3,12 +3,14 @@
 [ext_resource type="FontFile" uid="uid://cuylcghhd2avw" path="res://Fonts/ARCO for OSX.otf" id="1_iob0x"]
 [ext_resource type="Script" uid="uid://bmnmmonb2oab4" path="res://UI Menus/level_select.gd" id="2_i6bs7"]
 [ext_resource type="Script" uid="uid://b2xpq1iopo7jf" path="res://UI Menus/button_main_menu.gd" id="3_s56le"]
+[ext_resource type="Script" uid="uid://b4joe0tjjkrdt" path="res://UI Menus/button_quit_game.gd" id="4_781ba"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i6bs7"]
 font = ExtResource("1_iob0x")
 font_size = 72
 
 [node name="WinScreen" type="Control" unique_id=2105276399]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,6 +112,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iob0x")
 theme_override_font_sizes/font_size = 24
 text = "Quit Game"
+script = ExtResource("4_781ba")
 
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelOne" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_one_pressed"]
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelTwo" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_two_pressed"]
@@ -117,3 +120,4 @@ text = "Quit Game"
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFour" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_four_pressed"]
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFive" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_five_pressed"]
 [connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonMainMenu" to="BackgroundPanel/HBoxContainer/ButtonMainMenu" method="_on_pressed"]
+[connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonQuitGame" to="BackgroundPanel/HBoxContainer/ButtonQuitGame" method="_on_pressed"]

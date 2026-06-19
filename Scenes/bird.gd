@@ -23,6 +23,7 @@ func _ready() -> void:
     controls_disabled = false
     $RemoteTransform2D.remote_path = camera.get_path()
     controls_on.emit(self)
+    z_index = 1
     
     scene_root = get_tree()
     

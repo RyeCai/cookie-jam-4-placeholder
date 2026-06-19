@@ -24,6 +24,7 @@ font = ExtResource("1_xq4k4")
 font_size = 11
 
 [node name="PauseScene" type="Control" unique_id=2105276399]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

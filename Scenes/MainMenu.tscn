@@ -41,7 +41,7 @@ offset_left = 50.0
 offset_top = 50.0
 offset_right = 536.0
 offset_bottom = 127.0
-text = "MUTUALISM"
+text = "Pango Tango"
 label_settings = SubResource("LabelSettings_ghw46")
 
 [node name="CreditsButton" type="Button" parent="." unique_id=376387888]
