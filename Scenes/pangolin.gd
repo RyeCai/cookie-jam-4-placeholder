@@ -16,8 +16,8 @@ var ball_instance: RigidBody2D
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 var jump_sound = preload("res://SFX/jump_MIX.wav")
 var ball_form_sound = preload("res://SFX/armorshing_MIX.wav")
-var roll_sound
-
+var ball_roll_sound = preload("res://SFX/rolling.wav")
+var walk_sound = preload("res://SFX/grass_walking.wav")
 
 
 func _ready() -> void:
@@ -73,6 +73,8 @@ func _physics_process(delta: float) -> void:
         _check_for_sprite_move(direction)
         #Need to put this here due to ordering of animations
         if not is_on_floor():
+            if audio_player.stream == walk_sound:
+                audio_player.stop()
             sprite.play("jump")
         if not controls_disabled:
             # Handle jump.
@@ -87,6 +89,9 @@ func _physics_process(delta: float) -> void:
                 #velocity.x = direction * SPEED
                 #Added this line to smooth the movement a bit- feels better when approaching ledges
                 velocity.x = lerp(velocity.x, direction * SPEED, FRICTION * delta)
+                if not audio_player.playing and is_on_floor():
+                    audio_player.stream = walk_sound
+                    audio_player.play()
             else:
                 #This might be able to be replaced with lerp but we'll leave it for now
                 velocity.x = move_toward(velocity.x, 0, SPEED)
