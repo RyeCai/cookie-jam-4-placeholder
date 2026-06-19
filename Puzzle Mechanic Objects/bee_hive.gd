@@ -10,7 +10,7 @@ func _ready() -> void:
     root_node = get_tree()
 
 func _on_body_entered(body: Node2D) -> void:
-    if (body.is_in_group("Pangolin") or body.is_in_group("Bird")) and current_bees < max_num_bees:
+    if (body.is_in_group("Pangolin") and body.visible or body.is_in_group("Bird")) and current_bees < max_num_bees:
         var spawned_bee = bee_obj.instantiate()
         var parent_node = root_node.get_first_node_in_group("GameObjects")
         parent_node.call_deferred("add_child", spawned_bee)             ### Not to sure why i need this but something wrong with phys

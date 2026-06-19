@@ -36,7 +36,7 @@ sprite_frames = SubResource("SpriteFrames_wghbn")
 animation = &"button_default"
 
 [node name="ButtonArea" type="Area2D" parent="." unique_id=1958176529]
-collision_mask = 5
+collision_mask = 21
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea" unique_id=692604879]
 shape = SubResource("RectangleShape2D_wghbn")

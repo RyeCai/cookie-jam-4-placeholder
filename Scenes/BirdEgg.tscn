@@ -6,8 +6,8 @@
 size = Vector2(10, 10)
 
 [node name="BirdEgg" type="RigidBody2D" unique_id=1107428765 groups=["Egg"]]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 16
+mass = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=988763656]
 position = Vector2(0, -1)
