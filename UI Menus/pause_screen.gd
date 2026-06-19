@@ -1,6 +1,7 @@
 extends Control
 @onready var win_screen: Control = $"../WinScreen"
 
+
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("pause"):
         

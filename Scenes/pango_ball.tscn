@@ -25,6 +25,7 @@ radius = 9.475542
 
 [node name="Ball" type="RigidBody2D" unique_id=1742559038]
 process_physics_priority = -1
+z_index = 1
 collision_layer = 10
 collision_mask = 13
 physics_material_override = SubResource("PhysicsMaterial_jmngd")

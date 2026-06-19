@@ -10,6 +10,7 @@ font = ExtResource("1_iob0x")
 font_size = 72
 
 [node name="WinScreen" type="Control" unique_id=2105276399]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -103,6 +103,7 @@ _data = {
 }
 
 [node name="Bird" type="CharacterBody2D" unique_id=1043166582 groups=["Bird"]]
+z_index = 1
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_mcegt")
