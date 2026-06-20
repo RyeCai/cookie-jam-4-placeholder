@@ -11,7 +11,7 @@ var direction_to_body
 
 var bee_speed := 30.0
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     if target:
         direction_to_body = (target.global_position - self.global_position).normalized()
     
@@ -27,4 +27,4 @@ func _on_timer_timeout() -> void:
 
 func _on_hurt_area_body_entered(body: Node2D) -> void:
     if (body.is_in_group("Bird")) or (body.is_in_group("Pangolin") and body is CharacterBody2D):
-        get_tree().reload_current_scene()
+        get_tree().call_deferred("reload_current_scene")

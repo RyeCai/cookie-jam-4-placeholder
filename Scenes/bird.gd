@@ -13,7 +13,7 @@ const JUMP_VELOCITY = -400.0
 var controls_disabled: bool
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@export var camera: Camera2D
+@onready var camera: Camera2D = $"../Camera2D"
 
 var bird_egg := preload("res://Scenes/BirdEgg.tscn")
 var scene_root #Declares variable here to be later defined in ready function- holds the root node of current scene
@@ -22,6 +22,7 @@ func _ready() -> void:
     sprite.play("fly")
     controls_disabled = false
     $RemoteTransform2D.remote_path = camera.get_path()
+    camera.done_moving.connect(_on_camera_2d_done_moving)
     controls_on.emit(self)
     z_index = 1
     

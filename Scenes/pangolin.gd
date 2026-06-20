@@ -7,7 +7,7 @@ const FRICTION = 15.0
 const JUMP_VELOCITY = -400.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D #Reference to sprite sheet for flipping based on x speed
-@export var camera: Camera2D
+@onready var camera: Camera2D = $"../Camera2D"
 @export var pango_ball_scene: PackedScene
 var controls_disabled: bool 
 var ball_mode: bool
@@ -24,6 +24,7 @@ var walk_sound = preload("res://SFX/grass_walking.wav")
 func _ready() -> void:
     sprite.play("idle")
     controls_disabled = true
+    camera.done_moving.connect(_on_camera_2d_done_moving)
     $RemoteTransform2D.remote_path = camera.get_path()
     $RemoteTransform2D.update_position = false
     ball_mode = false
@@ -70,7 +71,7 @@ func _physics_process(delta: float) -> void:
             audio_player.play()
         elif audio_player.stream != ball_roll_sound and $Ball.linear_velocity.x <= 0:
             audio_player.stop()
-    else:        
+    else:
         # Add the gravity.
         if not is_on_floor():
             velocity += get_gravity() * delta
@@ -127,7 +128,6 @@ func _check_for_sprite_move(direction):
 
 func _on_ball_body_entered(_body: Node2D):
     ball_on_floor = true
-    print("floor")
 
 
 func _on_ball_body_exited(_body: Node2D):

@@ -342,15 +342,13 @@ tile_set = SubResource("TileSet_pgnsf")
 zoom = Vector2(2, 2)
 script = ExtResource("6_hpnul")
 
-[node name="Pangolin" parent="." unique_id=1847377051 node_paths=PackedStringArray("camera") instance=ExtResource("7_2m3a7")]
+[node name="Pangolin" parent="." unique_id=1847377051 instance=ExtResource("7_2m3a7")]
 unique_name_in_owner = true
 position = Vector2(-538, 155)
-camera = NodePath("../Camera2D")
 
-[node name="Bird" parent="." unique_id=1043166582 node_paths=PackedStringArray("camera") instance=ExtResource("8_2sgw0")]
+[node name="Bird" parent="." unique_id=1043166582 instance=ExtResource("8_2sgw0")]
 unique_name_in_owner = true
 position = Vector2(-534, 97)
-camera = NodePath("../Camera2D")
 
 [node name="GameObjects" type="Node2D" parent="." unique_id=1245912295 groups=["GameObjects"]]
 
@@ -553,10 +551,6 @@ visible = false
 [node name="PauseScene" parent="CanvasLayer" unique_id=2083603710 instance=ExtResource("19_6cptr")]
 visible = false
 
-[connection signal="done_moving" from="Camera2D" to="Pangolin" method="_on_camera_2d_done_moving"]
-[connection signal="done_moving" from="Camera2D" to="Bird" method="_on_camera_2d_done_moving"]
-[connection signal="controls_on" from="Pangolin" to="Camera2D" method="_on_pangolin_controls_on"]
-[connection signal="controls_on" from="Bird" to="Camera2D" method="_on_bird_controls_on"]
 [connection signal="body_entered" from="GameObjects/FinishZone" to="GameObjects/FinishZone" method="_on_body_entered"]
 [connection signal="body_exited" from="GameObjects/FinishZone" to="GameObjects/FinishZone" method="_on_body_exited"]
 [connection signal="body_entered" from="GameObjects/Breakable/Area2D" to="GameObjects/Breakable" method="_on_area_2d_body_entered"]

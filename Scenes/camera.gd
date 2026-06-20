@@ -3,11 +3,16 @@ extends Camera2D
 signal done_moving
 
 @export var panning_speed: float = 7.0
+@onready var pangolin: CharacterBody2D = $"../Pangolin"
+@onready var bird: CharacterBody2D = $"../Bird"
 var current_char: CharacterBody2D
 var camera_moving: bool = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass
+    pangolin.controls_on.connect(_on_pangolin_controls_on)
+    bird.controls_on.connect(_on_bird_controls_on)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
