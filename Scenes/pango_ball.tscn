@@ -21,7 +21,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3bggd"]
-radius = 9.475542
+radius = 9.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rtcl8"]
+radius = 9.55
 
 [node name="Ball" type="RigidBody2D" unique_id=1742559038]
 process_physics_priority = -1
@@ -35,3 +38,9 @@ sprite_frames = SubResource("SpriteFrames_hqfhl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=216038330]
 shape = SubResource("CircleShape2D_3bggd")
+
+[node name="FloorCheck" type="Area2D" parent="." unique_id=655247716]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorCheck" unique_id=513358530]
+shape = SubResource("CircleShape2D_rtcl8")
