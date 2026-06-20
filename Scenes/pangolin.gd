@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal controls_on(character: CharacterBody2D)
+signal controls_on(speed: float)
 
 const SPEED = 150.0
 const FRICTION = 15.0
@@ -25,7 +25,6 @@ var walk_sound = preload("res://SFX/grass_walking.wav")
 func _ready() -> void:
     sprite.play("idle")
     controls_disabled = true
-    camera.done_moving.connect(_on_camera_2d_done_moving)
     $RemoteTransform2D.remote_path = camera.get_path()
     $RemoteTransform2D.update_position = false
     ball_mode = false
@@ -36,9 +35,9 @@ func _physics_process(delta: float) -> void:
         if not controls_disabled:
             velocity.x = 0
         else:
-            controls_on.emit(self)
+            controls_on.emit(SPEED)
         controls_disabled = not controls_disabled
-        $RemoteTransform2D.update_position = false
+        $RemoteTransform2D.update_position = not controls_disabled
     
     if not controls_disabled and Input.is_action_just_pressed("pango_ball"):
         if ball_mode:
@@ -136,12 +135,4 @@ func _on_ball_body_entered(_body: Node2D):
 
 
 func _on_ball_body_exited(_body: Node2D):
-    ball_on_floor = false
-    
-
-func _on_camera_2d_done_moving() -> void:
-    if not controls_disabled:
-        $RemoteTransform2D.update_position = true
-    else:
-        $RemoteTransform2D.update_position = false
-        
+    ball_on_floor = false     
