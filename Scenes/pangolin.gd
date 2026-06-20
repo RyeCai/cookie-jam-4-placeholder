@@ -8,6 +8,7 @@ const JUMP_VELOCITY = -400.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D #Reference to sprite sheet for flipping based on x speed
 @onready var camera: Camera2D = $"../Camera2D"
+@onready var game_object_node: Node2D = get_tree().get_first_node_in_group("GameObjects")
 @export var pango_ball_scene: PackedScene
 var controls_disabled: bool 
 var ball_mode: bool
@@ -48,28 +49,32 @@ func _physics_process(delta: float) -> void:
             $AnimatedSprite2D.visible = true
             $RemoteTransform2D.global_position = pos_snapshot
             audio_player.pitch_scale = 1.0
+            add_to_group("Pangolin")
         else:
+            remove_from_group("Pangolin")
             $CollisionShape2D.set_deferred("disabled", true)
             $AnimatedSprite2D.visible = false
             ball_instance = pango_ball_scene.instantiate()
+            ball_instance.global_position = global_position 
             ball_instance.linear_velocity = velocity
             ball_instance.add_to_group("Pangolin")
             ball_instance.get_node("FloorCheck").body_entered.connect(_on_ball_body_entered)
             ball_instance.get_node("FloorCheck").body_exited.connect(_on_ball_body_exited)
-            add_child(ball_instance)
+            game_object_node.add_child(ball_instance)
         ball_mode = not ball_mode
         audio_player.stream = ball_form_sound
         audio_player.play()
         ###
     
     if ball_mode:
-        $RemoteTransform2D.position = ball_instance.position
+        #$RemoteTransform2D.global_position = ball_instance.global_position
+        global_position = ball_instance.global_position
         if audio_player.stream != ball_roll_sound and not audio_player.playing:
             audio_player.stream = ball_roll_sound
-        if not audio_player.playing and $Ball.linear_velocity.x > 0 and ball_on_floor:
-            audio_player.pitch_scale = clampf($Ball.linear_velocity.length()/SPEED, 0.5, 1.5)
+        if not audio_player.playing and abs(ball_instance.linear_velocity.x) > 0.1 and ball_on_floor:
+            audio_player.pitch_scale = clampf(ball_instance.linear_velocity.length()/SPEED, 0.5, 1.5)
             audio_player.play()
-        elif audio_player.stream != ball_roll_sound and $Ball.linear_velocity.x <= 0:
+        elif audio_player.stream != ball_roll_sound and ball_instance.linear_velocity.x <= 0:
             audio_player.stop()
     else:
         # Add the gravity.
