@@ -3,6 +3,7 @@ extends Area2D
 @export var connected_burrow : Area2D
 @onready var teleport_location: Node2D = $TeleportLocation
 var inside_range : bool
+@onready var sound_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -18,3 +19,4 @@ func _input(event: InputEvent) -> void:
         if event is InputEventKey and event.is_action_pressed("pango_burrow") and event.is_pressed():
             var pango = get_tree().get_first_node_in_group("Pangolin")
             pango.global_position = connected_burrow.teleport_location.global_position
+            sound_player.play()
