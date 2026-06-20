@@ -9,7 +9,7 @@ export_credentials.cfg
 *.tmp
 
 # Manually created build folder
-.build/*
+build/*
 
 # Imported translations (automatically generated from CSV files)
 *.translation
