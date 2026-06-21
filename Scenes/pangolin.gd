@@ -31,8 +31,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-    if not ball_mode and velocity.y > 0 and get_last_slide_collision():
-        toggle_ball_mode()
+    #if not ball_mode and velocity.y > 0 and get_last_slide_collision():
+        #toggle_ball_mode()
     
     if ball_mode:
         #$RemoteTransform2D.global_position = ball_instance.global_position
