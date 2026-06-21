@@ -93,15 +93,13 @@ sources/0 = SubResource("TileSetAtlasSource_kry3j")
 zoom = Vector2(2, 2)
 script = ExtResource("1_jjvhh")
 
-[node name="Pangolin" parent="." unique_id=1847377051 node_paths=PackedStringArray("camera") instance=ExtResource("3_kry3j")]
+[node name="Pangolin" parent="." unique_id=1847377051 instance=ExtResource("3_kry3j")]
 unique_name_in_owner = true
 position = Vector2(-1, -28)
-camera = NodePath("../Camera2D")
 
-[node name="Bird" parent="." unique_id=1043166582 node_paths=PackedStringArray("camera") instance=ExtResource("1_8gbba")]
+[node name="Bird" parent="." unique_id=1043166582 instance=ExtResource("1_8gbba")]
 unique_name_in_owner = true
 position = Vector2(-1, -79)
-camera = NodePath("../Camera2D")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1135086308]
 z_index = -1

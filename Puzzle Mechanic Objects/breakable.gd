@@ -5,8 +5,6 @@ extends StaticBody2D
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-    print(body.linear_velocity.length())
-    print(body.mass)
     if body.linear_velocity.length() * body.mass > velocity_threshold:
-        call_deferred("queue_free")
+        $AnimationPlayer.play("Destroy")
         

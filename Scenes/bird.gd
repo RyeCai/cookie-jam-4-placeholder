@@ -13,7 +13,7 @@ const JUMP_VELOCITY = -400.0
 var controls_disabled: bool
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@export var camera: Camera2D
+@onready var camera: Camera2D = $"../Camera2D"
 
 var bird_egg := preload("res://Scenes/BirdEgg.tscn")
 var scene_root #Declares variable here to be later defined in ready function- holds the root node of current scene
@@ -22,7 +22,7 @@ func _ready() -> void:
     sprite.play("fly")
     controls_disabled = false
     $RemoteTransform2D.remote_path = camera.get_path()
-    controls_on.emit(self)
+    controls_on.emit(SPEED)
     z_index = 1
     
     scene_root = get_tree()
@@ -46,11 +46,12 @@ func _physics_process(delta: float) -> void:
     # As good practice, you should replace UI actions with custom gameplay actions.
     if Input.is_action_just_pressed("switch_char"):
             controls_disabled = not controls_disabled
-            $RemoteTransform2D.update_position = false
+            $RemoteTransform2D.update_position = not controls_disabled
             if controls_disabled:
                 velocity = Vector2.ZERO
             else:
-                controls_on.emit(self)
+                controls_on.emit(SPEED)
+                
     if not controls_disabled:
         var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
         direction = direction.normalized()
@@ -66,14 +67,6 @@ func _physics_process(delta: float) -> void:
             audio_player.stream = peck_sound
             audio_player.play()
             ###
-    # if direction:
-    #     velocity = direction * SPEED
-    # else:
-    #     velocity = velocity.move_toward(Vector2.ZERO, SPEED)
-
-    ##Doesnt seem to work due to having no gravity- will leave for now (or maybe because of circular collision)
-    #if is_on_floor():
-    #sprite.play("idle")
 
     move_and_slide()
     
@@ -86,10 +79,3 @@ func _check_for_sprite_move(direction):
 
     if direction > 0:
         sprite.flip_h = false
-
-
-func _on_camera_2d_done_moving() -> void:
-    if not controls_disabled:
-        $RemoteTransform2D.update_position = true
-    else:
-        $RemoteTransform2D.update_position = false

@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bvjdqyebt7odj" path="res://Art/pangolin_walk.png" id="4_b1fci"]
 [ext_resource type="PackedScene" uid="uid://npcqmqu10one" path="res://Scenes/pango_ball.tscn" id="6_00o1j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0pmm"]
-size = Vector2(45, 23)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1fci"]
+height = 33.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ocowm"]
 atlas = ExtResource("2_m0pmm")
@@ -111,12 +111,15 @@ animations = [{
 z_index = 1
 collision_layer = 2
 collision_mask = 5
+floor_stop_on_slope = false
+floor_max_angle = 0.5235988
 script = ExtResource("1_m0pmm")
 pango_ball_scene = ExtResource("6_00o1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=520007572]
-position = Vector2(0.5, 4.5)
-shape = SubResource("RectangleShape2D_m0pmm")
+position = Vector2(2.5, 4.5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_b1fci")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2082295413]
 texture_filter = 1
