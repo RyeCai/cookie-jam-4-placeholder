@@ -549,7 +549,7 @@ offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_82khx")
-region_rect = Rect2(64, 48, 16, 16)
+region_rect = Rect2(64, 64, 16, 16)
 axis_stretch_vertical = 1
 
 [node name="Area2D" type="Area2D" parent="GameObjects/Breakable" unique_id=751365020]
@@ -589,7 +589,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_82khx")
-region_rect = Rect2(64, 48, 16, 16)
+region_rect = Rect2(64, 64, 16, 16)
 axis_stretch_vertical = 1
 
 [node name="Area2D" type="Area2D" parent="GameObjects/Breakable2" unique_id=731917010]

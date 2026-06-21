@@ -185,6 +185,12 @@ theme_override_fonts/font = ExtResource("2_8saeu")
 theme_override_font_sizes/font_size = 32
 text = "Level Five"
 
+[node name="ButtonLevelSix" type="Button" parent="LevelSelectVBox" unique_id=1406485063]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 32
+text = "Level Six"
+
 [node name="ButtonQuitGame" type="Button" parent="." unique_id=321426933]
 layout_mode = 1
 anchors_preset = 2
@@ -210,4 +216,5 @@ autoplay = true
 [connection signal="pressed" from="LevelSelectVBox/ButtonLevelThree" to="LevelSelectVBox" method="_on_button_level_three_pressed"]
 [connection signal="pressed" from="LevelSelectVBox/ButtonLevelFour" to="LevelSelectVBox" method="_on_button_level_four_pressed"]
 [connection signal="pressed" from="LevelSelectVBox/ButtonLevelFive" to="LevelSelectVBox" method="_on_button_level_five_pressed"]
+[connection signal="pressed" from="LevelSelectVBox/ButtonLevelSix" to="LevelSelectVBox" method="_on_button_level_six_pressed"]
 [connection signal="pressed" from="ButtonQuitGame" to="ButtonQuitGame" method="_on_pressed"]

@@ -275,6 +275,12 @@ theme_override_fonts/font = ExtResource("1_xq4k4")
 theme_override_font_sizes/font_size = 32
 text = "Level Five"
 
+[node name="ButtonLevelSix" type="Button" parent="BackgroundPanel/LevelSelectVBox" unique_id=145264935]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xq4k4")
+theme_override_font_sizes/font_size = 32
+text = "Level Six"
+
 [connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonMainMenu" to="BackgroundPanel/HBoxContainer/ButtonMainMenu" method="_on_pressed"]
 [connection signal="pressed" from="BackgroundPanel/HBoxContainer/ButtonQuitGame" to="BackgroundPanel/HBoxContainer/ButtonQuitGame" method="_on_pressed"]
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelOne" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_one_pressed"]
@@ -282,3 +288,4 @@ text = "Level Five"
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelThree" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_three_pressed"]
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFour" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_four_pressed"]
 [connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelFive" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_five_pressed"]
+[connection signal="pressed" from="BackgroundPanel/LevelSelectVBox/ButtonLevelSix" to="BackgroundPanel/LevelSelectVBox" method="_on_button_level_six_pressed"]
