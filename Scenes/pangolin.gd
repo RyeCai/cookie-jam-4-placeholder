@@ -60,18 +60,19 @@ func _physics_process(delta: float) -> void:
             audio_player.stop()
         sprite.play("jump")
     
-
-    if direction:
-        #Added this line to smooth the movement a bit- feels better when approaching ledges
-        velocity.x = lerp(velocity.x, direction * SPEED, FRICTION * delta)
-        if not audio_player.playing and is_on_floor():
-            audio_player.stream = walk_sound
-            audio_player.play()
-    else:
-        #This might be able to be replaced with lerp but we'll leave it for now
-        if audio_player.stream == walk_sound:
-            audio_player.stop()
-        velocity.x = move_toward(velocity.x, 0, SPEED)
+    
+    if not controls_disabled:
+        if direction:
+            #Added this line to smooth the movement a bit- feels better when approaching ledges
+            velocity.x = lerp(velocity.x, direction * SPEED, FRICTION * delta)
+            if not audio_player.playing and is_on_floor():
+                audio_player.stream = walk_sound
+                audio_player.play()
+        else:
+            #This might be able to be replaced with lerp but we'll leave it for now
+            if audio_player.stream == walk_sound:
+                audio_player.stop()
+            velocity.x = move_toward(velocity.x, 0, SPEED)
 
     move_and_slide()
 
