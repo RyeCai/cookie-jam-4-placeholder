@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
         controls_disabled = not controls_disabled
         $RemoteTransform2D.update_position = not controls_disabled
     
-    if not controls_disabled and Input.is_action_just_pressed("pango_ball"):
+    if not controls_disabled and Input.is_action_just_pressed("pango_ball") or not ball_mode and velocity.y > 0 and get_last_slide_collision():
         if ball_mode:
             var pos_snapshot: Vector2 = ball_instance.global_position
             position = ball_instance.global_position
