@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://c4ebpa3dsmkc7" path="res://Puzzle Mechanic Objects/bee_hive.gd" id="11_bb10h"]
 [ext_resource type="Script" uid="uid://cc63rpvblgm3e" path="res://Levels/lvl4_locked_wall_2.gd" id="11_lbipc"]
 [ext_resource type="Texture2D" uid="uid://ba1ygjskepgt1" path="res://Art/beehive.png" id="12_hpnul"]
+[ext_resource type="AudioStream" uid="uid://bui7r4ped2xvu" path="res://SFX/breakable_wood.wav" id="15_4k76w"]
 [ext_resource type="PackedScene" uid="uid://h7tsgyai6uu2" path="res://Puzzle Mechanic Objects/TwigPile.tscn" id="16_hpnul"]
 [ext_resource type="PackedScene" uid="uid://ds01foms1lojk" path="res://UI Menus/WinScreen.tscn" id="17_2m3a7"]
 [ext_resource type="PackedScene" uid="uid://drfg45tfeom88" path="res://UI Menus/PauseScreen.tscn" id="19_6cptr"]
@@ -308,6 +309,116 @@ size = Vector2(16, 240)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb10h"]
 size = Vector2(16, 240)
 
+[sub_resource type="Animation" id="Animation_2jqqc"]
+resource_name = "Destroy"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.76666665),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NinePatchRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_627wa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NinePatchRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smluk"]
+_data = {
+&"Destroy": SubResource("Animation_2jqqc"),
+&"RESET": SubResource("Animation_627wa")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2m3a7"]
 size = Vector2(135, 197)
 
@@ -402,7 +513,7 @@ shape = SubResource("RectangleShape2D_ubtys")
 [node name="WinSoundPlayer" type="AudioStreamPlayer2D" parent="GameObjects/FinishZone" unique_id=1085339561]
 stream = ExtResource("10_2sgw0")
 
-[node name="Breakable" type="StaticBody2D" parent="GameObjects" unique_id=167316622]
+[node name="Breakable" type="StaticBody2D" parent="GameObjects" unique_id=1724374896]
 position = Vector2(151, 168)
 collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_2jqqc")
@@ -413,7 +524,7 @@ velocity_threshold = 35.0
 position = Vector2(0, -112)
 shape = SubResource("RectangleShape2D_mj323")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GameObjects/Breakable" unique_id=1688922742]
+[node name="NinePatchRect" type="NinePatchRect" parent="GameObjects/Breakable" unique_id=79509567]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -435,6 +546,12 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/Breakable/Area2D" unique_id=431637233]
 position = Vector2(0, -112)
 shape = SubResource("RectangleShape2D_bb10h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameObjects/Breakable" unique_id=1609052778]
+libraries/ = SubResource("AnimationLibrary_smluk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameObjects/Breakable" unique_id=623936124]
+stream = ExtResource("15_4k76w")
 
 [node name="BeeHive" type="Area2D" parent="GameObjects" unique_id=1486080879]
 position = Vector2(-402, -2)

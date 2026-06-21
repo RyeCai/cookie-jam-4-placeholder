@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c5knq7mk84a73" path="res://Scenes/camera_2d.tscn" id="6_4a15p"]
 [ext_resource type="PackedScene" uid="uid://cp3radpus4u5g" path="res://Scenes/Pangolin.tscn" id="7_kfwy4"]
 [ext_resource type="PackedScene" uid="uid://bjjqahvrxd2yf" path="res://Scenes/bird.tscn" id="8_4a15p"]
-[ext_resource type="Script" uid="uid://1hcetbuvstci" path="res://Puzzle Mechanic Objects/breakable.gd" id="10_4xh80"]
+[ext_resource type="PackedScene" uid="uid://tykq8x3i8oju" path="res://Puzzle Mechanic Objects/breakable.tscn" id="10_1ms17"]
 [ext_resource type="PackedScene" uid="uid://e0iu4mup5rox" path="res://Puzzle Mechanic Objects/BurrowHole.tscn" id="10_oqqcm"]
 [ext_resource type="AudioStream" uid="uid://5whcrdtw4cfy" path="res://SFX/VictoryNoise.wav" id="11_2tv8p"]
 [ext_resource type="Script" uid="uid://dmd13504n60u7" path="res://Levels/finish_zone.gd" id="12_735bq"]
@@ -288,14 +288,6 @@ sources/4 = SubResource("TileSetAtlasSource_6li7a")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgnsf"]
 size = Vector2(14, 280)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2jqqc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xh80"]
-size = Vector2(16, 416)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4jai"]
-size = Vector2(16, 416)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubtys"]
 size = Vector2(95, 560)
 
@@ -351,39 +343,20 @@ texture = ExtResource("5_ywwk3")
 region_rect = Rect2(80, 64, 16, 16)
 axis_stretch_vertical = 1
 
-[node name="Breakable" type="StaticBody2D" parent="GameObjects" unique_id=167316622]
+[node name="Breakable" parent="GameObjects" unique_id=1570291751 instance=ExtResource("10_1ms17")]
 position = Vector2(-80, 136)
-collision_mask = 14
-physics_material_override = SubResource("PhysicsMaterial_2jqqc")
-script = ExtResource("10_4xh80")
-velocity_threshold = 35.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/Breakable" unique_id=708610494]
+[node name="CollisionShape2D" parent="GameObjects/Breakable" index="0" unique_id=708610494]
 position = Vector2(0, -200)
-shape = SubResource("RectangleShape2D_4xh80")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GameObjects/Breakable" unique_id=1688922742]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
+[node name="NinePatchRect" parent="GameObjects/Breakable" index="1" unique_id=1688922742]
 offset_top = -408.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_ywwk3")
-region_rect = Rect2(64, 48, 16, 16)
-axis_stretch_vertical = 1
 
-[node name="Area2D" type="Area2D" parent="GameObjects/Breakable" unique_id=225110670]
-collision_mask = 8
+[node name="CollisionShape2D" parent="GameObjects/Breakable/Area2D" parent_id_path=PackedInt32Array(1570291751, 225110670) index="0" unique_id=431637233]
+position = Vector2(0, -199.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/Breakable/Area2D" unique_id=431637233]
-position = Vector2(0, -200)
-shape = SubResource("RectangleShape2D_l4jai")
+[node name="AudioStreamPlayer2D" parent="GameObjects/Breakable" index="4" unique_id=612658022]
+scale = Vector2(1, -18.119999)
 
 [node name="FinishZone" type="Area2D" parent="GameObjects" unique_id=1906968550]
 position = Vector2(300, 0)
@@ -491,6 +464,7 @@ visible = false
 [node name="PauseScene" parent="CanvasLayer" unique_id=119161893 instance=ExtResource("14_e0it2")]
 visible = false
 
-[connection signal="body_entered" from="GameObjects/Breakable/Area2D" to="GameObjects/Breakable" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="GameObjects/FinishZone" to="GameObjects/FinishZone" method="_on_body_entered"]
 [connection signal="body_exited" from="GameObjects/FinishZone" to="GameObjects/FinishZone" method="_on_body_exited"]
+
+[editable path="GameObjects/Breakable"]
